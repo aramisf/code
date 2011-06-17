@@ -23,5 +23,4 @@ while true; do
 
     xte "mousemove $((RANDOM%horiz)) $((RANDOM%vert))"
     sleep 10
-    xte "mousemove $((RANDOM%horiz)) $((RANDOM%vert))"
 done
