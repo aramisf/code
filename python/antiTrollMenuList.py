@@ -24,14 +24,10 @@ while True:
     except IndexError:
         continue    
     except ValueError:
-        try:
-            if es in a:
-                print es,a.index(es)
-                break
+        if es in a:
+            print es,a.index(es)
+            break
     
-            else:
-                continue
-    
-        except ValueError:
+        else:
             continue
 
