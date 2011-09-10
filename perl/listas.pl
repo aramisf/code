@@ -23,7 +23,7 @@ print "Outra lista crua eh: @impares\n";
 
 print "- - -\n";
 
-# splitting -> selecionar indices especificos de um vetor:
+# slicing -> selecionar indices especificos de um vetor:
 print "\@impares[3,4..7,0]: @impares[3,4..7,0]\n"; # nao importa a ordem!
 
 print "- - -\n";
