@@ -4,6 +4,15 @@
 use strict;
 use warnings;
 
+# And for this I'd like to thank R. Hexsel:
+use constant {
+    FALSE => 0,
+    TRUE => 1 
+};
+
+print "sim\n" if not FALSE;
+print "tr00\n" if TRUE;
+
 main(@ARGV);
 
 sub main
@@ -25,4 +34,3 @@ sub error
     print("$0: $e\n");
     exit 0;
 }
-
