@@ -18,7 +18,8 @@ print join(": - ",sort keys %feia) .":\n";
 print join("    ",sort values %feia) ."\n\n";
 
 # Agora fazendo uns loops que usam builtins do perl:
-while (my ($ch,$vl) = each %feia) { # each retorna uma ordem aleatoria
+while (my ($ch,$vl) = each %ENV) { # each retorna uma ordem aleatoria %ENV eh do
+                                   # proprio interpretador do PERL
 
     print "$ch eh $vl\n";
 }
