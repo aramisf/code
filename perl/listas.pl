@@ -16,8 +16,8 @@ print " (os elementos sao: ".join(",",@pares).")\n";
 
 # Para mostrar os elementos da lista apenas com espacos em branco entre eles,
 # usa-se:
-print "A lista crua eh: @pares\n";
-print "Outra lista crua eh: @impares\n";
+print "\@pares: @pares\n";
+print "\@impares: @impares\n";
 
 ##################################################
 
@@ -37,3 +37,32 @@ print q[@l1."\n" = ].@l1."\n";
 
 # Dentro das aspas expande o vetor:
 print q|"@l1\n" = |."@l1\n";
+print "- - -\n";
+
+# push adiciona um elemento aa lista:
+print "Adicionando 50 a: @l1:\n";
+push(@l1,50);
+print "$_ " foreach @l1; print "\n";
+
+# pop remove o ultimo:
+print "Removendo ultimo de @l1";
+#print "$_ " foreach @l1;
+my $ultimo = pop(@l1);
+print "\ntirei: $ultimo de @l1\n";
+print "- - -\n";
+
+# Adicionando coisas ao inicio de uma lista vazia:
+print "Criando uma lista vazia...\t\t\t";
+my @vazia = ();
+print "OK!\n";
+
+unshift (@vazia, 0);
+print "add 0: [@vazia]\n";
+
+unshift (@vazia, -1);
+print "add -1: [@vazia]\n";
+
+# Removendo o primeiro elemento de uma lista:
+my $primeiro = shift(@vazia);
+print "sub $primeiro: [@vazia]\n";
+print "- - -\n";
