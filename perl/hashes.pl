@@ -41,3 +41,11 @@ if ( exists $bunita{"ch3"}) {
 
     print qq[A chave 'ch3' existe na hash \%bunita com o valor $bunita{"ch3"}\n];
 }
+
+# Hashes podem ser atribuidas a listas e vice-versa:
+my @bunita = %bunita;
+
+print "Na hash: ";
+print "$_ " foreach %bunita;
+
+print "\nNo vetor: @bunita\n";
