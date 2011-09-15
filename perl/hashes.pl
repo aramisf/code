@@ -36,3 +36,8 @@ foreach my $ch (sort keys %bunita) {
 
     print qq|$ch eh $bunita{"$ch"}\n|;
 }
+
+if ( exists $bunita{"ch3"}) {
+
+    print qq[A chave 'ch3' existe na hash \%bunita com o valor $bunita{"ch3"}\n];
+}
