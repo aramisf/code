@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 # Listagem do conteudo de um diretorio:
+# para mais detalhes, perldoc -f -X
 
 my @dirlist = <*>; # Equivale ao * no shell;
 
