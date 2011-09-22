@@ -62,15 +62,16 @@ else:
     # Now findind hexa values, corresponding to speed values:
     colorSpeedList = []
 
+    # Filling up color hex codes list:
     for i in range(len(speedList)):
 
         colorSpeedList.append(int(((speedList[i]*255)/maxSpeed)))
 
-    # This is Ok so far!
+    # Printing out information of interest:
     for i in range(len(speedList)):
 
+        # Into hex format:
         print "km/h: %.2f, cor: ff00%.2x%.2x" %\
         (speedList[i],colorSpeedList[i],255-colorSpeedList[i])
 
 
-    # Now turning int into hex:
