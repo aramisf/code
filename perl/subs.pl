@@ -46,3 +46,18 @@ sub acesso_intercontexto2 {
 }
 
 acesso_intercontexto(@l);
+
+sub solta_lista {
+
+    return 1..7;
+}
+
+my @l1 = solta_lista;
+my @l2 = &solta_lista;
+
+print "l1 = @l1\n";
+print "l2 = @l2\n";
+
+# Caso nao sejam passados parametros para o programa, avisa o usuario:
+print "### Vc pode passar parametros para este script.\n" if scalar @ARGV == 0;
+
