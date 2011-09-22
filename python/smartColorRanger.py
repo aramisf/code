@@ -66,8 +66,8 @@ else:
     # This is Ok so far!
     for i in range(len(speedList)):
 
-        print "km/h: %.2f, cor: ff00%.2x%.2x\n" %\
-            (speedList[i],colorSpeedList[i],255-colorSpeedList[i])
+        print "km/h: %.2f, cor: ff00%.2x%.2x" %\
+        (speedList[i],colorSpeedList[i],255-colorSpeedList[i])
 
 
     # Now turning int into hex:
