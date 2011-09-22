@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 #
 # Ranger Class, the 'else' portion of the first code:
-class Ranger(self, fileFP):
+class Ranger(object):
 
-    def __init__(self):
+    def __init__(self, fileFP):
 
         self.fileFP = fileFP
         self.speedList = [ float(i.strip()) for i in self.fileFP.readlines() ]
