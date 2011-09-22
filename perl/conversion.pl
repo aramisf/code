@@ -33,10 +33,13 @@
 #####################################3
 # Now my own code:
 
-$int = 255;
+$int = 255
+;
 
 $hexa = sprintf("%x",$int);
+$hexa2 = hex $int;
 $deci = hex $hexa;
 
 print "hexa = $hexa \n";
+print "hexa2 = $hexa2\n";
 print "decimal = $deci \n";
