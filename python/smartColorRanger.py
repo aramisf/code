@@ -41,6 +41,9 @@ else:
     fileFP = open(sys.argv[1],'r')
     speedList = [ float(i.strip()) for i in fileFP.readlines() ]
 
+    # Closing FP:
+    fileFP.close()
+
     # Just in case:
     #speedList.sort()
 
