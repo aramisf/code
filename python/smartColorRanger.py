@@ -18,9 +18,14 @@
 # - Is it necessary to implement directory hierarchy?
 # - Would it be useful to have a python struct for each kml/xml struct?
 
+# XXX: Ok, just decided to solve my immediate problem first. After that, with
+# time, I'll probably finnish this, in a beautiful way.
+
 
 import sys
 
+# For now, one file as parameter, containing info as the given example (one line
+# with speed value).
 def usage():
 
     print "Usage:\n\t%s: <input file>\n" % sys.argv[0]
@@ -33,8 +38,36 @@ if (len(sys.argv) != 2):
 
 else:
 
-    minor = float(sys.argv[1])
-    major = float(sys.argv[2])
-    #print "minor %.2f major %.2f\n" % (minor,major)
+    fileFP = open(sys.argv[1],'r')
+    speedList = [ float(i.strip()) for i in fileFP.readlines() ]
+
+    # Just in case:
+    #speedList.sort()
+
+    minSpeed = min(speedList)
+    maxSpeed = max(speedList)
+
+    # Because we need a zero:
+    lowerBoundary = (minSpeed * 255) / maxSpeed
+
+    # And this would be the maximum speed:
+    upperBoundary = 255
+
+    # Just checking:
+    print minSpeed, maxSpeed, lowerBoundary, upperBoundary
+
+    # Now findind hexa values, corresponding to speed values:
+    colorSpeedList = []
+
+    for i in range(len(speedList)):
+
+        colorSpeedList.append(int(((speedList[i]*255)/maxSpeed)))
+
+    # This is Ok so far!
+    for i in range(len(speedList)):
+
+        print "km/h: %.2f, cor: ff00%.2x%.2x\n" %\
+            (speedList[i],colorSpeedList[i],255-colorSpeedList[i])
 
 
+    # Now turning int into hex:
