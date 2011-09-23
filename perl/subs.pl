@@ -4,6 +4,22 @@
 #use strict;
 use warnings;
 
+# Equivalente a declarar uma funcao antes de defini-la. Isso eh necessario
+# apenas quando chama-se a funcao sem os parentesis, experimenta comentar para
+# ver o erro que da:
+use subs qw( mensagem );
+
+# Chamando mensagem sem parentesis:
+mensagem "eita noih";
+
+# Remove a necessidade de usar o 'use subs' ali, mostrando q quando se usa o
+# parentesis, nao tem problema declarar uma funcao depois de usa-la.
+no subs;
+
+#
+# Com parentesis:
+mensagem ("eita2");
+
 sub soma {
     return $_[0] + $_[1];
 
@@ -11,6 +27,13 @@ sub soma {
 
 sub subtracao {
     $_[0] - $_[1];
+}
+
+# Declarando mensagem aqui:
+sub mensagem {
+
+    my $msg = shift || return;
+    print "$msg\n";
 }
 
 my $sum = soma(12,23);
