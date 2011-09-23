@@ -25,12 +25,19 @@ def main():
 
     else:
 
-        print "Output names:\n",
+        # The full list containing kml maps that will be analyzed
+        maps = []
+
+        # Run through argv to take files and create the list
         for i in range(len(sys.argv)-1):
     
             # Changes input and output filenames.
-            print "- %s " % sub("\.input",".colorCodes",sys.argv[i+1])
+            inputName = sys.argv[i+1]
+            outputName = sub("\.input",".colorCodes",sys.argv[i+1])
 
+            # TODO: Change parameters in Ranger class definition.
+            maps.append(Ranger(inName, outName))
 
+            
 # Starts here:
 main()
