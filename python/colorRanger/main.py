@@ -7,6 +7,7 @@
 
 import sys
 import ranger
+from re import sub
 
 def usage():
 
@@ -24,11 +25,11 @@ def main():
 
     else:
 
-        print "Output names: ",
+        print "Output names:\n",
         for i in range(len(sys.argv)-1):
     
-            # TODO: Check input and output filenames.
-            print "%s " % sys.argv[i+1].replace('.*','.out')
+            # Changes input and output filenames.
+            print "- %s " % sub("\.input",".colorCodes",sys.argv[i+1])
 
 
 # Starts here:
