@@ -4,13 +4,14 @@
 # Ranger Class, the 'else' portion of the first code:
 class Ranger(object):
 
-    def __init__(self, fileFP):
+    def __init__(self, inputFileFP,outputFileFP):
 
-        self.fileFP = fileFP
-        self.speedList = [ float(i.strip()) for i in self.fileFP.readlines() ]
+        self.inputFileFP = inputFileFP
+        self.outputFileFP = outputFileFP
+        self.speedList = [ float(i.strip()) for i in self.inputFileFP.readlines() ]
 
         # Closing FP:
-        self.fileFP.close()
+        self.inputFileFP.close()
 
         # Minimum and Maximum speeds for this object:
         self.minSpeed = min(self.speedList)
