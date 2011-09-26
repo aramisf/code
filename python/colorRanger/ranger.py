@@ -55,23 +55,40 @@ class Ranger(object):
 
 
     # It will change according to argv size:
-    def about(self, mode='local'):
+    def about(self, mode = 'local', **kwargs):
+
+        print "mode = %s\n" % mode
 
         # When argv size is 1:
         if (mode == 'local'):
 
+            self.setMyLocalSpeedColors()
+            self.outputFileFP.write("Local Mode. Colors considered locally\n")
             for i in range(len(self.speedList)):
 
                 # Into hex format:
                 print "km/h: %.2f, cor: ff00%.2x%.2x" %\
                 (self.speedList[i],self.localSpeedColorCodes[i],255-self.localSpeedColorCodes[i])
 
+                # Writing to file:
+                self.outputFileFP.write("km/h:%.2f:cor:ff00%.2x%.2x\n" %\
+                (self.speedList[i],self.localSpeedColorCodes[i],255-self.localSpeedColorCodes[i]))
+
+
         elif (mode == 'global'):
 
+            minSpeed = kwargs['minSpeed']
+            maxSpeed = kwargs['maxSpeed']
+            self.setMyGlobalSpeedColors(minSpeed, maxSpeed)
+            self.outputFileFP.write("Global Mode. Colors considered globally\n")
             for i in range(len(self.speedList)):
 
                 # Into hex format:
                 print "km/h: %.2f, cor: ff00%.2x%.2x" %\
                 (self.speedList[i],self.globalSpeedColorCodes[i],255-self.globalSpeedColorCodes[i])
 
+                # Writing to file:
+                self.outputFileFP.write("km/h:%.2f:cor:ff00%.2x%.2x\n" %\
+                (self.speedList[i],self.globalSpeedColorCodes[i],255-self.globalSpeedColorCodes[i]))
 
+        self.outputFileFP.close()
