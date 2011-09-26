@@ -6,8 +6,13 @@
 # name.
 
 import sys
-import ranger
+from ranger import Ranger
 from re import sub
+
+# Global variables:
+maps = [] # The full list containing kml maps that will be analyzed
+mode = '' # According to argv size it'll be 'local' or 'global'
+
 
 def usage():
 
@@ -25,19 +30,37 @@ def main():
 
     else:
 
-        # The full list containing kml maps that will be analyzed
-        maps = []
+        # Setting mode to print info at the end:
+        if (sys.argv == 2): mode = 'local'
+        else: mode = 'global'
+
 
         # Run through argv to take files and create the list
         for i in range(len(sys.argv)-1):
     
-            # Changes input and output filenames.
             inputName = sys.argv[i+1]
+            # Using input to change output filenames.
             outputName = sub("\.input",".colorCodes",sys.argv[i+1])
 
-            # TODO: Change parameters in Ranger class definition.
-            maps.append(Ranger(inName, outName))
+            maps.append(Ranger(inputName, outputName))
 
-            
+# Find global maximum value:
+def setGlobalValues():
+
+    maxGlobal = []
+    minGlobal = []
+
+    for i in range(len(maps)):
+
+        maxGlobal.append(maps[i].maxSpeed)
+        minGlobal.append(maps[i].minSpeed)
+    
+    globalUpperBoundary = max(maxGlobal)
+    globalLowerBoundary = min(minGlobal)
+
+
+
+
 # Starts here:
 main()
+setGlobalValues()
