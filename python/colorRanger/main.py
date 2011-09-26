@@ -11,7 +11,11 @@ from re import sub
 
 # Global variables:
 maps = [] # The full list containing kml maps that will be analyzed
-mode = '' # According to argv size it'll be 'local' or 'global'
+mode = ' '# According to argv size it'll be 'local' or 'global'
+
+# Both will be set later:
+globalUpperBoundary = 255
+globalLowerBoundary = 0
 
 
 def usage():
@@ -30,9 +34,14 @@ def main():
 
     else:
 
+        global mode
         # Setting mode to print info at the end:
-        if (sys.argv == 2): mode = 'local'
-        else: mode = 'global'
+        if (len(sys.argv) == 2):
+
+            mode = 'local'
+        else:
+
+            mode = 'global'
 
 
         # Run through argv to take files and create the list
@@ -55,12 +64,20 @@ def setGlobalValues():
         maxGlobal.append(maps[i].maxSpeed)
         minGlobal.append(maps[i].minSpeed)
     
+    global globalUpperBoundary
+    global globalLowerBoundary
     globalUpperBoundary = max(maxGlobal)
     globalLowerBoundary = min(minGlobal)
 
 
+def printOutPut():
 
+    for i in range(len(maps)):
+
+        print "oi\n"
+        maps[i].about(mode, minSpeed = globalLowerBoundary, maxSpeed = globalUpperBoundary)
 
 # Starts here:
 main()
 setGlobalValues()
+printOutPut()
