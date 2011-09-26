@@ -74,7 +74,6 @@ def printOutPut():
 
     for i in range(len(maps)):
 
-        print "oi\n"
         maps[i].about(mode, minSpeed = globalLowerBoundary, maxSpeed = globalUpperBoundary)
 
 # Starts here:
