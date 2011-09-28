@@ -1,6 +1,0 @@
-Para rodar os programas, basta usar o gnat:
-
- $ gnatmake <nome do programa>.ada
-
- \o
-
