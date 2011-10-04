@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sys import path, exit as sys_exit
-from os.path import abspath
+from sys import argv as sys_argv, path, exit as sys_exit
+from os.path import abspath, dirname
 
 # Wanna see it?
 #print "\n\nOriginal $PATH:\n%s\n" % path
@@ -19,7 +19,7 @@ except ImportError:
 #print "\nAppending the following line:\n\t%s\nto path\n" % abspath('./../lib/')
 
 # Updating path to import libs. XXX: Must be path to your modules!
-path.append(abspath("./../lib/"))
+path.append(dirname(abspath(sys_argv[0]))+"/../lib/")
 
 # Now it must work:
 try:
