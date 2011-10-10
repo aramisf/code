@@ -1,0 +1,15 @@
+/* algumas funcoes q podem ser uteis */
+
+fchdir (int fd) -> Vai para o diretório representado por fd.
+
+fchmod (int fd, mode_t mode) -> Muda os direitos de acesso.
+
+fchown (int fd, uid_t mode) -> Muda o dono do arquivo.
+
+fstat (int fd, struct stat *st) -> Consulta informacoes gravadas no nó do
+ arquivo físico.
+
+ftruncate (int fd, off_t length) -> trunca um arquivo existente
+
+fdopen (int fd, char *mode) -> Inicia E/S de um descriptor jah aberto. Eh uma
+ rotina de stdio, nao uma chamada de sistema.

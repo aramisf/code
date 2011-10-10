@@ -1,0 +1,12 @@
+/* membros importantes da estrutura flock */
+
+Nome  | Tipo | Significado 
+
+l_type | int | Acoes esperadas: F_RDLCK (trancar leitura), F_WRLCK (trancar
+ escrita) e F_UNLCK (destrancar)
+
+l_whence | int | l_start: Campo de origem (geralmente SEEK_SET)
+
+l_start | off_t | Posicao do inicio da tranca (geralmente 0)
+
+l_len | off_t | Tamanho da tranca, 0 ate alcançar o fim do arquivo
