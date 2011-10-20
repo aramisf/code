@@ -1,0 +1,36 @@
+Arquitetura MVC em Rails:
+
+ - Beneficios:
+    - Isolamento da logica da interface de usuario;
+    - Facilidade de manutencao de codigo;
+    - Esclarece onde diferentes tipos de codigo estao, facilitando a manutencao.
+
+--
+
+* Modelos:
+
+Um modelo representa a informacao de uma aplicacao e as regras para manipular os
+dados.
+-> Em Rails, os modelos sao primariamente usados para gerenciar as regras de
+interacao com a tabela da base de dados correspondente. Na maioria dos casos,
+cada tabela de uma base de dados corresponde a um modelo de uma aplicacao. O
+volume da logica das aplicacoes se concentrarao nos modelos.
+
+
+* Visao:
+
+A visao representa a interface entre o usuario e a aplicacao.
+-> Em Rails, visoes sao geralmente arquivos html com codigo ruby embutido que
+executa apenas codigo relativo a apresentacao dos dados.
+Visao tambem gerencia a tarefa de prover dados para o navegador ou outras
+ferramentas usadas para fazer requisicoes a sua aplicacao.
+
+
+* Controladores:
+
+Controladores sao a "cola" que liga modelos e visoes.
+-> Em Rails, os controladores sao responsaveis por processar as requisicoes
+feitas via web, buscar os dados nos modelos, e transmitir os dados para serem
+preparados (pela visao) para serem apresentados.
+
+
