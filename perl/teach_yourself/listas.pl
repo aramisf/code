@@ -66,3 +66,7 @@ print "add -1: [@vazia]\n";
 my $primeiro = shift(@vazia);
 print "sub $primeiro: [@vazia]\n";
 print "- - -\n";
+
+print "Agora uma lista em hexadecimais seguida de sua representacao binaria:\n";
+print sprintf("%.4x %.8b\n",$_,$_) foreach 0x0016..0x002c;
+
