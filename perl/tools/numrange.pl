@@ -3,23 +3,27 @@
 # Script file to play with number ranges in perl =)
 # The idea is to play with matrices also.
 
-# Generate hexadecimal renge according to given parameter.
+use Math::BigInt;
+
+# Generate hexadecimal range according to given parameter.
 sub hexa {
 
-    my $min = shift || 0x0;
-    my $max = shift || $min + 0xf;# Ok, just a simple range is enough to play.
+    # Will consider all numbers as bigInts:
+    my $min = new Math::BigInt(shift);
+    my $max = new Math::BigInt(shift);
 
-    my @result = ();                # The returned list;
-    my $hexalen = length($max) - 2; # Ignoring the '0x'.
-    #my $binlen = $hexalen * 4;      # One hexa equals 4 binaries.
-    #my $declen = length(sprintf("%d",hex($max))); # Decimal length of max number
+    my @result = ();
 
-    foreach (hex($min)..hex($max)) {
+    my $hexalen = length(sprintf("%x",$max));
+    my $binlen = length(sprintf("%b",$max));
+    my $declen = length(sprintf("%d",$max));
+
+    foreach ($min..$max) {
 
         push (@result, sprintf("0x%.".$hexalen."x ",$_)); 
     }
 
-    #print sprintf("0x%.".$hexalen."x = %.".$declen."d = %.".$binlen."b\n",$_,$_,$_) foreach (hex($min)..hex($max));
+    print sprintf("0x%.".$hexalen."x = %.".$declen."d = %.".$binlen."b\n",$_,$_,$_) foreach ($min..$max);
     return @result;
 }
 
@@ -35,15 +39,4 @@ else {
     die "No argv =( ... \n";
 }
 
-print "\@lista: @lista\n";
-
-for $i (@lista) {
-
-    my ($indice) = grep { $lista[$_] eq $i } 0..$#lista;
-
-    for my $j (hex($lista[$indice])..hex($lista[-1])) {
-        print sprintf("0x%x ",$j);
-    }
-    print "\n-----\n";
-}
-
+print "Lista: @lista\n";
