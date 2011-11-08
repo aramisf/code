@@ -12,8 +12,8 @@ sub hexa {
 
     my @result = ();                # The returned list;
     my $hexalen = length($max) - 2; # Ignoring the '0x'.
-    my $binlen = $hexalen * 4;      # One hexa equals 4 binaries.
-    my $declen = length(sprintf("%d",hex($max))); # Decimal length of max number
+    #my $binlen = $hexalen * 4;      # One hexa equals 4 binaries.
+    #my $declen = length(sprintf("%d",hex($max))); # Decimal length of max number
 
     foreach (hex($min)..hex($max)) {
 
@@ -24,14 +24,27 @@ sub hexa {
     return @result;
 }
 
+my @lista = ();
+
 if ($ARGV[0] && $ARGV[1]) {
 
-    my @lista = hexa($ARGV[0],$ARGV[1]);
-    print "Lista: @lista\n";
+    @lista = hexa($ARGV[0],$ARGV[1]);
 }
 
 else {
 
     die "No argv =( ... \n";
+}
+
+print "\@lista: @lista\n";
+
+for $i (@lista) {
+
+    my ($indice) = grep { $lista[$_] eq $i } 0..$#lista;
+
+    for my $j (hex($lista[$indice])..hex($lista[-1])) {
+        print sprintf("0x%x ",$j);
+    }
+    print "\n-----\n";
 }
 
