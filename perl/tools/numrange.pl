@@ -6,9 +6,8 @@
 # Generate hexadecimal renge according to given parameter.
 sub hexa {
 
-    #XXX: Is there a better way to find if a value is in hexa format?
     my $min = shift || 0x0;
-    my $max = shift || $min + 0xf;# Ok, just a simple range is enough too play.
+    my $max = shift || $min + 0xf;# Ok, just a simple range is enough to play.
 
     my @result = ();                # The returned list;
     my $hexalen = length($max) - 2; # Ignoring the '0x'.
