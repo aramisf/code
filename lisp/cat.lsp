@@ -1,0 +1,5 @@
+(with-open-file (stream "/etc/passwd")
+    (do ((line (read-line stream nil)
+               (read-line stream nil)))
+        ((null line))
+      (print line)))
