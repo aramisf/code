@@ -5,7 +5,7 @@
 # Especialmente neste solsticio, todos os planetas do Sistema Solar se
 # alinharao com o centro da Galaxia. Isto acontece uma vez a cada 5k anos.
 
-use Date::Calc qw(Delta_Days Today Gmtime);
+use Date::Calc qw(Delta_Days Today);
 
 my @hj = Today([$gmt]);
 my @solsticio = (2012,12,21);
