@@ -15,6 +15,6 @@ my $dias = Delta_Days(@hj, @solsticio);
 my $msg = "Faltam $dias dias para o proximo solsticio de verao";
 
 print "$msg\n";
-exec ("purple-remote setstatus?message=\"$msg - via perl script\"");
+exec ("purple-remote setstatus?message=\"$msg - via perl script at http://0.mk/8c08d\"");
 
 exit(0);
