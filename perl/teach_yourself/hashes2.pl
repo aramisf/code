@@ -23,3 +23,14 @@ for (my $i = 0; $i < scalar @{ $hash{v1} }; $i++) {
 }
 
 print "\n";
+
+my @vet = (2,4,6,8,10,12);
+@{ $hash{v3}} = @vet;
+
+# Mais uma vez, agora somando outros valores.
+print "@{ $hash{v1}}\n@{ $hash{v3}}\n";
+for (my $i = 0; $i < scalar @{ $hash{v1} }; $i++) {
+
+    print sprintf ("%d ",@{$hash{v1}}[$i] + @{$hash{v3}}[$i]);
+}
+print "\n";
