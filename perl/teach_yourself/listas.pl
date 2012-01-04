@@ -70,3 +70,12 @@ print "- - -\n";
 print "Agora uma lista em hexadecimais seguida de sua representacao binaria:\n";
 print sprintf("%.4x %.8b\n",$_,$_) foreach 0x0016..0x002c;
 
+print "Somando os elementos conforme seus indices:\n";
+print "Vetor dos pares:   @pares - tam: ".scalar @pares."\n";
+print "Vetor dos impares: @impares - tam: ".scalar @impares."\n";
+
+my @soma = ();
+for (my $i = 0; $i < scalar @pares; $i++) {
+    push @soma,($pares[$i]+$impares[$i]);
+}
+print "Vetor soma: @soma\n";
