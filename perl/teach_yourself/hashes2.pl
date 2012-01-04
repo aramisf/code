@@ -3,8 +3,7 @@
 use strict;
 use warnings;
 
-# Se uma hash tiver um vetor dentro?
-
+# E se uma hash tiver um vetor dentro?
 my %hash = (
                 v1 => [1,2,3,4,5,6],
                 v2 => [7,8,9,6,5,4],
