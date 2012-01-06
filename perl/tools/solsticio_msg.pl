@@ -1,9 +1,14 @@
 #!/usr/bin/perl
 
 # Script que atualiza o status do pidgin com uma mensagem, avisando quantos
-# dias faltam para o proximo solsticio de verao.
+# dias faltam para o proximo solsticio de verao. Para roda-lo voce precisa
+# usar o pidgin (http://pidgin.im/) e ter o PERL (http://www.perl.org/)
+# instalado na sua máquina.
+#
 # Especialmente neste solsticio, todos os planetas do Sistema Solar se
 # alinharao com o centro da Galaxia. Isto acontece uma vez a cada 5k anos.
+
+# Se o ceu estiver encoberto neste dia, fodeu xD
 
 use Date::Calc qw(Delta_Days Today);
 
