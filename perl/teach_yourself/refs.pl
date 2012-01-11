@@ -79,7 +79,7 @@ print "$_: ${${$a3d[1]}[0]}{$_} " foreach keys ${$a3d[1]}[0];
 print "\n";
 
 print "4a Hash (via referencia no 3o nivel da ref):\n"; # Praticamente ilegivel o.O [2]
-print "$_: ${${$ra3d}[1]}[1]{$_} " foreach keys ${$ra3d}[1][1];
+print "$_: ${${$ra3d}[1]}[1]{$_} " foreach keys ${${$ra3d}[1]}[1];
 print "\n";
 
 print "Valor da chave i, localizada na primeira hash do 3o vetor do vetor principal: ${$ra3d}[2][0]{'i'}\n";
