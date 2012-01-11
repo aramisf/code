@@ -7,31 +7,46 @@ print "Valor original: $val\n";
 print "Valor do endereco: $ref\n";
 print "Valor por referencia: $$ref\n";
 
-# Continuando... agora com coisa de gente grande. Aqui esta sendo definida a
-# estrutura basica, mas eh soh para visualizacao, pois ela sera preenchida
-# posteriormente.
+# Observe que cada cidade eh 
 my %sul_do_brasil = (
-    PR => 
-        %cidades = ("ctba", 2000000,
-                    "londrina", 1000000,
-                    "foz", 800000,
-                    "campo largo", 200000,
-                    "sanjo", 250000
-                   ), # Tudo dado ficticio!
+    PR =>   {"ctba", 1,
+             "londrina", 2,
+             "foz", 3,
+             "campo largo", 4,
+             "sanjo", 5
+            }, # Tudo dado ficticio!
           
-    SC => 
-        %cidades = ("blumenau", 180000,
-                    "floripa", 200000,
-                    "itajai", 130000,
-                    "camboriu", 1000000
-                   ), # Tudo dado ficticio! [2]
+    SC =>   {"blumenau", 6,
+             "floripa", 7,
+             "itajai", 8,
+             "camboriu", 9
+            }, # Tudo dado ficticio! [2]
           
-    RS => 
-        %cidades = ("poa", 1900000,
-                    "gramado", 40000,
-                    "baje", 80000,
-                    "canoas", 90000,
-                    "canela", 30000
-                   ), # Tudo dado ficticio! [3]
+    RS =>   {"poa", 10,
+             "gramado", 11,
+             "baje", 12,
+             "canoas", 13,
+             "canela", 14
+            }, # Tudo dado ficticio! [3]
     ); # Final de %sul_do_brasil
 
+my $href = \%sul_do_brasil;
+
+#foreach (keys %{$href}) {
+foreach my $estado (keys %sul_do_brasil) {
+
+    print "\nChave1: $estado\n";
+
+    foreach my $cidade (keys $href->{$estado}) {
+
+        print "V1: $cidade hab1: $href->{$estado}->{$cidade}  ";
+    }
+
+    # Denovo, de um jeito diferente:
+    print "\nChave2: $estado\n";
+    foreach my $cidade (keys ${$href}{$estado}) {
+
+        print "V2: $cidade hab2: ${$href}{$estado}{$cidade}  ";
+    }
+}
+print "\n";
