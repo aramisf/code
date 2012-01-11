@@ -50,3 +50,27 @@ foreach my $estado (keys %sul_do_brasil) {
     }
 }
 print "\n";
+
+# Agora sim para algo mais foda: um array tridimensional.
+my @a3d = (   [ {'a',1,'b',2},
+                {'c',3,'d',4} ],
+
+              [ {'e',5,'f',6}, 
+                {'g',7,'h',8} ],
+
+              [ {'i',9,'j',10}, 
+                {'k',11,'l',12} ]
+          );
+
+my $ra3d = \@a3d;
+
+print "1a Hash:\n";
+print "$_: ${$ra3d}[0][0]{$_} " foreach keys ${$ra3d}[0][0];
+print "\n";
+
+print "2a Hash:\n";
+print "$_: ${$ra3d}[0][1]{$_} " foreach keys ${$ra3d}[0][0];
+print "\n";
+
+print "Valor da chave i, localizada na primeira hash do 3o vetor do vetor principal: ${$ra3d}[2][0]{'i'}\n";
+
