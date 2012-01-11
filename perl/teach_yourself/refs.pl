@@ -11,28 +11,27 @@ print "Valor por referencia: $$ref\n";
 # estrutura basica, mas eh soh para visualizacao, pois ela sera preenchida
 # posteriormente.
 my %sul_do_brasil = (
-    PR => (
+    PR => 
         %cidades = ("ctba", 2000000,
                     "londrina", 1000000,
                     "foz", 800000,
                     "campo largo", 200000,
                     "sanjo", 250000
-                   ); # Tudo dado ficticio!
-          );
-
-    SC => (
+                   ), # Tudo dado ficticio!
+          
+    SC => 
         %cidades = ("blumenau", 180000,
                     "floripa", 200000,
                     "itajai", 130000,
                     "camboriu", 1000000
-                   ); # Tudo dado ficticio! [2]
-          );
-
-    RS => (
+                   ), # Tudo dado ficticio! [2]
+          
+    RS => 
         %cidades = ("poa", 1900000,
                     "gramado", 40000,
                     "baje", 80000,
                     "canoas", 90000,
                     "canela", 30000
-                   ); # Tudo dado ficticio! [3]
+                   ), # Tudo dado ficticio! [3]
+    ); # Final de %sul_do_brasil
 
