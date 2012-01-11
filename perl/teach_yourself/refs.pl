@@ -7,7 +7,7 @@ print "Valor original: $val\n";
 print "Valor do endereco: $ref\n";
 print "Valor por referencia: $$ref\n";
 
-# Continuando, agora com coisa de gente grande. Aqui esta sendo definida a
+# Continuando... agora com coisa de gente grande. Aqui esta sendo definida a
 # estrutura basica, mas eh soh para visualizacao, pois ela sera preenchida
 # posteriormente.
 my %sul_do_brasil = (
@@ -18,7 +18,7 @@ my %sul_do_brasil = (
                                 # numero de habitantes eh o valor.
    );
 
-my $estados = ("PR", "SC", "RS");
+my @estados = ("PR", "SC", "RS");
 my %cidades_pr = (  "ctba", 2000000,
                     "londrina", 1000000,
                     "foz", 800000,
