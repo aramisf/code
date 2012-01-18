@@ -21,7 +21,6 @@ if ( -f $ARGV[0]) {
 
     while (my $linha = <ARQ>) {
 
-        print "Enviando linha: $linha\n";
         $pdf->text($linha, autoflow => 'on');
     }
 
