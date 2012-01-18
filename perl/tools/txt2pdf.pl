@@ -24,5 +24,6 @@ if ( -f $ARGV[0]) {
         $pdf->text($linha, autoflow => 'on');
     }
 
+    close ARQ;
     $pdf->save();
 }    
