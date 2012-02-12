@@ -1,0 +1,75 @@
+from scipy import *
+
+# exemplo numero complexo
+sqrt(-1)
+
+
+# exemplo broadcast
+def f(x):
+    return x+1
+
+f(1)
+f(array([0,1,2]))
+f(arange(0.,10.,0.1))
+
+
+#--- zero de funcoes
+from scipy import optimize
+
+def f(x):
+   return x**3-.165*x**2+3.993*10**-4
+
+optimize.newton(f, 0.05)
+#--- integracao numerica
+from scipy import integrate
+
+def f(t):
+    return 2000.0*np.log(140000./(140000-2100*t)) -9.8*t
+
+
+x = arange(8,30,0.1)
+y = f(x)
+# regra dos trapezios
+integrate.trapz (y,x)
+# gauss quad
+integrate.quad(f, 8,30)
+
+#-- sistemas lineares
+from scipy import linalg
+
+A = [[25.,5.,1.], [64.,8.,1.], [144.,12.,1.]]
+B = [106.8, 177.2, 279.2]
+linalg.solve(A,B)
+
+# outros exemplos usando matrizes
+A = matrix(A)
+# inversa
+print A.I
+# determinante
+linalg.det(A)
+
+#--- Interpolacao
+from scipy import interpolate
+
+x = [ 2., 4.25, 5.25, 7.81, 9.2, 10.6]
+y = [ 7.2, 7.1, 6., 5., 3.5, 5.]
+
+
+p = interpolate.lagrange(x,y)
+print p
+
+# plot de graficos
+plt.plot(x,y, 'bo')
+plt.ylabel('Eixo y')
+plt.xlabel('Eixo x')
+plt.grid(True)
+plt.axis([0,11, 0,8])
+plot_x=arange(2., 10.6, 0.01)
+plot_y = p(plot_x)
+plt.plot(plot_x,plot_y, 'r-')
+
+# versao alternativa -> so liga os pontos
+f = interpolate.interp1d(x, y)
+plot_y = f(plot_x)
+plt.plot(plot_x,plot_y, 'g--')
+
