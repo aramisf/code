@@ -33,8 +33,7 @@
 #####################################3
 # Now my own code:
 
-$int = 255
-;
+$int = 255;
 
 $hexa = sprintf("%x",$int);
 $hexa2 = hex $int;
