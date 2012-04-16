@@ -66,6 +66,7 @@ foreach (@str2) {
         print "1o round \$saida: $saida\n\n";
 
         #my ($saida) = $_ =~ /([0-9]+)/; # Parentesis faz o mesmo que acima
+                                        # (retorna a resposta logica)
         #print "2o round \$saida: $saida\n";
         #print "2o round \$1: $1\n\n";
     }
