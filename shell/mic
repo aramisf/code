@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#############
+##   MIC   ##
+#############
+
+# Um programa para mutar o som do seu microfone. Util quando vc esta usando uma
+# interface grafica sem suporte aos botoes de controle de som (sim, interfaces
+# bastante simples).
+#
+# Note que foi usado o valor numid=10. Esse valor deve ser consultado para a sua
+# maquina, para o numero especifico do seu dispositivo.
+
+NUMID=
+
+# Descobrindo o estado atual do microfone (se ligado ou desligado)
+V=`amixer cget $NUMID|grep ' values'|cut -d'=' -f2|cut -d\, -f1`
+
+# Se estiver ligado, desliga
+if [[ "$V" == "on" ]]; then
+
+    amixer -q cset $NUMID off
+
+# Se nao, liga
+elif [[ "$V" == "off" ]]; then
+
+    amixer -q cset $NUMID on
+fi
+
