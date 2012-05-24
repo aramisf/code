@@ -3,19 +3,27 @@
 ##############
 ##   MUDO   ##
 ##############
+
 # Um programa para mutar o som do seu pc. Util quando vc esta usando uma
 # interface grafica sem suporte aos botoes de controle de som.
+#
+# Esse script utiliza o amixer para realizar essas tarefas. O amixer vem com o
+# pacote de driver de som ALSA. Existem outros, um exemplo eh o aumix, que
+# funciona diferentemente do amixer.
+
+# Descubra o nome do dispositivo e defina aqui (pode ser 'Master', 'Main', etc
+NOME=
 
 # Local para armazenar o volume atual:
 V_Guardado=/tmp/.volume-`id -nu`
 
 # Descobrindo volume atual:
-V=`amixer sget Master|grep %|cut -d'[' -f2|cut -d']' -f1`
+V=`amixer sget $NOME|grep %|cut -d'[' -f2|cut -d']' -f1`
 
 # Se estiver com som, deixa mudo e armazena o valor anterior
 if [[ "$V" != "0%" ]]; then
 
-    amixer -q sset Master 0%
+    amixer -q sset $NOME 0%
     echo "$V">$V_Guardado
 
 # Se estiver mudo, procura o arquivo que guardava o volume anterior
@@ -31,5 +39,5 @@ else
         V=50%
     fi
     
-    amixer -q sset Master $V
+    amixer -q sset $NOME $V
 fi
