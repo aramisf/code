@@ -1,0 +1,12 @@
+#!/bin/bash
+
+V=`amixer sget Master|grep Mono:|cut -d' ' -f8`
+
+if [[ "$V" == "[on]" ]]; then
+
+    amixer -q sset Master mute
+
+elif [[ "$V" == "[off]" ]]; then
+
+    amixer -q sset Master unmute
+fi
