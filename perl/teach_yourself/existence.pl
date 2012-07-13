@@ -36,18 +36,17 @@ __END__
 # Exemplo de saida:
 
 Useless use of hash element in void context at ./existence.pl line 11.
-k1 exists
-k2 exists
-k3 exists
-k4 does not exist
+k1 existe
+k2 existe
+k3 existe
+k4 nao existe
 
-k1 defined
-k2 defined
-k3 not defined
-k4 not defined
+k1 definido
+k2 definido
+k3 nao definido
+k4 nao definido
 
-k1 true
-k2 false
-k3 false
-k4 false
-
+k1 vdd
+k2 falso
+k3 falso
+k4 falso
