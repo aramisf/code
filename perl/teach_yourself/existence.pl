@@ -11,6 +11,7 @@ $hash{'k3'} = 0;
 $hash{'k4'}; # gera um aviso, mas eh apenas para testes.
 
 undef $hash{'k3'};
+#undef $hash{'k4'};     # Experimenta descomentar para ver a diferenca
 
 if (exists $hash{'k1'}) {print "k1 existe\n"} else {print "k1 nao existe\n"};
 if (exists $hash{'k2'}) {print "k2 existe\n"} else {print "k2 nao existe\n"};
@@ -31,7 +32,7 @@ if ($hash{'k2'}) {print "k2 vdd\n"} else {print "k2 falso\n"};
 if ($hash{'k3'}) {print "k3 vdd\n"} else {print "k3 falso\n"};
 if ($hash{'k4'}) {print "k4 vdd\n"} else {print "k4 falso\n"};
 
-__END__
+__END__ 
 
 # Exemplo de saida:
 
@@ -50,3 +51,4 @@ k1 vdd
 k2 falso
 k3 falso
 k4 falso
+
