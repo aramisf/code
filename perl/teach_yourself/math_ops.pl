@@ -35,8 +35,16 @@ sub malog {
     }
 }
 
-my $v1 = sprintf ("%d",malog (1024,2));
-my $v2 = sprintf ("%d",malog (768,2));
+#my $v1 = sprintf ("%d",malog (1024,2));
+#my $v2 = sprintf ("%d",malog (768,2));
 
-print "$v1\n";
-print "$v2\n";
+#print "$v1\n";
+#print "$v2\n";
+
+print "Digite o numero que deseja calcular o logaritmo: ";
+chomp(my $valor = <STDIN>);
+
+print "Agora digite a base: ";
+chomp (my $base = <STDIN>);
+
+print sprintf ("Resultado: %f\n", malog($valor,$base));
