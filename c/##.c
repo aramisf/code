@@ -1,7 +1,7 @@
 /* por pzanoni: https://github.com/pzanoni */
 #include <stdio.h>                                                               
                                                                                  
-#define soma(tipo) \                                                             
+#define soma(tipo) \
 tipo soma_##tipo(tipo a, tipo b) { return a + b; }                               
                                                                                  
 soma(int)                                                                        
