@@ -5,12 +5,21 @@
 # usar o pidgin (http://pidgin.im/) e ter o PERL (http://www.perl.org/)
 # instalado na sua máquina.
 #
-# Especialmente neste solsticio, todos os planetas do Sistema Solar se
-# alinharao com o centro da Galaxia. Isto acontece uma vez a cada 5k anos.
+# UPDATE:
+# Esquece a historia dos planetas, nao eh verdade. Entendi errado e outras
+# fontes afirmam que o alinhamento se dara entre a Terra, o Sol e o centro da
+# galaxia. Este evento ocorre uma vez a cada 26 mil anos.
+#
+# Se quiser saber o que rola ver no ceu:
+# http://www.2012.latitude19.com.br/2012.htm
+#
+# Se tiver somente um minuto:
+# http://www.youtube.com/watch?v=ItK06t_muqo
+#
+# Se tiver uma hora e meia:
+# http://www.youtube.com/watch?v=uJ8VnwjDKjc
 
-# Se o ceu estiver encoberto neste dia, fodeu xD
-
-use Date::Calc qw(Delta_Days Localtime Today);
+use Date::Calc qw(Delta_Days);
 my $dias,$msg;
 
 my @hj = localtime;
