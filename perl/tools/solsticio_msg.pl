@@ -30,13 +30,13 @@ my @solsticio = (2012,12,21);
 my $dias = Delta_Days(@hj, @solsticio);
 
 if ($dias > 0) {
-    $msg = "Faltam $dias dias para o proximo solsticio de verao";
+    $msg = "Falta(m) $dias dia(s) para o proximo solsticio de verao";
 }
 elsif ($dias == 0) {
     $msg = "O solsticio de verao eh hj!";
 }
 else {
-    $msg = "Jah se passaram $dias dias desde o solsticio de verao";
+    $msg = "Jah se passou(aram) $dias dia(s) desde o solsticio de verao";
 }
 print "$msg\n";
 exec ("purple-remote setstatus?message=\"$msg - via perl script at http://0.mk/8c08d\"");
