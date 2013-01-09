@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% Exemplo de curriculo em Latex %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Original feito por Francisco S. Jr: %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%% Configurando o Documento %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Formato do documento. Experimente alterar o 10pt para 11pt ou 12pt
+\documentclass[10pt]{article}
+
+% Insere calculos em especificacoes de medidas
+\usepackage{calc}
+
+% Lingua
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+
+
+% bibsection simples para secoes de curriculos
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}
+    {\minipage[t]{\linewidth}\list{}{%
+        \setlength{\leftmargin}{\bibhang}%
+        \setlength{\itemindent}{-\leftmargin}%
+        \setlength{\itemsep}{\bibsep}%
+        \setlength{\parsep}{\z@}%
+        }}
+    {\endlist\endminipage}
+\makeatother
+
+% Insere titulos das secoes no lado esquerdo da pagina
+\reversemarginpar
+
+
+%% Use essas linhas para papel com tamanho carta
+\usepackage[paper=letterpaper,
+            %includefoot, % Descomente para por o n. da pagina acima da margem
+            marginparwidth=1.2in,     % Tamanho da fonte das secoes
+            marginparsep=.05in,       % Espacamento
+            margin=1in,               % margem (em polegadas)
+            includemp]{geometry}
+
+%% Use essas linhas para papel A4
+%\usepackage[paper=a4paper,
+%            %includefoot,
+%            marginparwidth=30.5mm,
+%            marginparsep=1.5mm,
+%            margin=25mm,
+%            includemp]{geometry}
+
+%% Eliminando a identacao ao longo do documento
+\setlength{\parindent}{0in}
+
+%% Ambiente de enumeracao (de itens):
+\usepackage{paralist}
+
+%% Referencia p a ultima pagina na numeracao
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Descomente este para eliminar numeros de paginas
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} de \protect\pageref*{LastPage}
+%                    \arabic{page}
+                    \hfill \,}}
+
+%% Por fim, marcacoes de indice em PDFs
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%% Fim da configuracao do documento %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Comandos Facilitadores %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Cabecalho, com uma linha horizontal logo abaixo
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% Cabecalhos de Secao
+%
+% Uso: \section{nome da secao}
+%
+% Importante, deixe o texto logo abaixo da linha que indica a secao, para fins
+% de alinhamento. Ex:
+%
+%       \section{Secao}
+%       Texto do inicio da secao.
+%
+%% OU
+%       \section{Secao}
+%       %
+%       Texto do inicio da secao.
+%
+%% Mas nao:
+%
+%       \section{Secao}
+%
+%       Texto do inicio da secao.
+%
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+%% Uma lista do tipo itemize com bastante espaco entre os itens
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-1em}}
+
+\newenvironment{compactouterlist}[1][\enskip\textbullet]%
+        {\begin{itemize} \setlength{\itemsep}{0.1em}}{\end{itemize}%
+         \vspace{-1em}}
+
+%% Criando um ambiente identico aa lista externa que possui melhor espacamento
+% quando usado no inicio de uma \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+%% Uma lista estilo itemize com pouco espaco entre os itens
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+%% Criando um ambiente identico aa lista interna que possui melhor espacamento
+% quando usado no inicio de uma \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{compactitem}[#1]}
+        {\end{compactitem}\vspace{-.6\baselineskip}}
+
+% Para adicionar algum espaco entre paragrafos
+% Isso tb informa ao LaTeX para pular para a proxima pagina neste ponto.
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+% Hiperlinks para documentos DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%% Fim dos comandos facilitadores %%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Inicio do Curriculo %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Fulano de tal}
+
+
+\section{Informações Pessoais e para Contato}
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+
+
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+\href{http://www.seulinkaqui.net}%
+     {Seu Link Aqui} & \\
+\href{http://www.linkdafirma.com/}{Link da Firma}
+                           & \textit{Cel:} (000) 000-0000 \\
+000 Rua Qualquer           & \textit{Fax:} (000) 000-0000 \\
+0000 Bairro                & \textit{E-mail:}
+\href{mailto:user@host.dom}{user@host.dom}\\
+Cidade, Estado, CEP, PAIS   & \textit{WWW:}
+\href{http://www.firma.com/}{www.firma.com}\\
+\\
+\textit{Telefone:} (00) 0000-0000 & \textit{Cidade:} Cidade-Estado \\
+\textit{E-mail:} \href{mailto:seu@email.com}{seu@email.com}\\
+\textit{Estado civil:} Você q diz \\
+\textit{LinkedIn:} \href{http://www.linkedin.com}{Seu perfil} &
+\textit{Nascimento:} 01/01/1970 \\
+\textit{Lattes:} \href{http://lattes.cnpq.br}{Link do Currículo Lattes} & \\
+
+\end{tabular}
+
+\section{Áreas de Atuação}
+%
+\begin{outerlist}
+    \item[] Áreas de Atuação.
+\end{outerlist}
+
+
+\section{Objetivos}
+%
+\begin{outerlist}
+    \item[] Objetivos.
+\end{outerlist}
+
+
+\section{Educação}
+\href{http://www.facul.br/}{\textbf{Universidade X}}, localização
+
+\begin{outerlist}
+
+\item[] Graduação 
+        \begin{innerlist}
+          \item \textit{Trabalho de Graduação:}
+          \item \textit{Orientador:}
+        \end{innerlist}
+
+\end{outerlist}
+
+
+\section{Experiência Profissional}
+%
+\begin{outerlist}
+
+\item[] \textit{Corporações Cápsula}%
+    \hfill \textbf{Desde 2000}
+    \begin{innerlist}
+        \item Atividades...
+    \end{innerlist}
+    
+\end{outerlist}
+
+\blankline
+
+
+\section{Publicações} 
+\begin{bibsection}
+		\item Referência 1
+		\item Referência 2
+\end{bibsection}
+
+\section{Competências}
+%
+\textbf{Linguas}
+\begin{compactouterlist}
+    \item[] Lingua 1: Nível;
+    \item[] Lingua 2: Nível;
+    \item[] Lingua 3: Nível;
+\end{compactouterlist}
+
+\blankline
+
+\textbf{Programação}
+\begin{compactouterlist}
+    \item[] Avançada: C, Python;
+    \item[] Intermediária: PHP;
+    \item[] Básica: Pascal.
+\end{compactouterlist}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Fim do Curriculo %%%%%%%%%%%%%%%%%%%%%%%%%%%
