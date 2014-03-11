@@ -15,6 +15,10 @@ my %letra;      # indexado pela letra
 # CUIDADO COM A CODIFICACAO DOS CARACTERES.
 my @valida = map { ord $_ } ('a'..'z' ,' ', 0..9);
 
+#my @valida = 0..127;   # sugestao para colocar no hard -> todos os valores da
+                        # tabela ASCII (nem todos os caracteres serao
+                        # imprimiveis)
+
 for (my $i=0; $i<@valida; $i++) {
 
   my $char      = sprintf "%c", $valida[$i];
