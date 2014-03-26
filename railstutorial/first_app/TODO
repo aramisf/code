@@ -1,0 +1,10 @@
+Um dia, migrar este aplicativo para um repositorio unico, pq o pnc do heroku
+nao aceita a estrutura de diretorios atual.
+
+Passos:
+$ heroku create
+Created http://stormy-cloud-5881.herokuapp.com/ |
+git@heroku.com:stormy-cloud-5881.herokuapp.com
+Git remote heroku added
+
+$ git push heroku master
