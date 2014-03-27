@@ -20,6 +20,7 @@ database.yml
 doc/
 *.swp
 *~
+*.old
 .project
 .idea
 .secret
