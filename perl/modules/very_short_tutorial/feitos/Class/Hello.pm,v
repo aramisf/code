@@ -1,0 +1,66 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	99.06.08.03.55.55;	author mjd;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.06.08.03.42.50;	author mjd;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Added Poole's suggestion of separating declaration and initialization
+of %hash variable to possibly prevent people from moving the `my'
+declaration into an inner block in exercise 4.
+@
+text
+@#!/usr/bin/perl
+
+package Hello;
+use Carp;
+
+sub new {
+  my ($package) = @@_;
+  my %hash;
+  %hash = (MESSAGE => "Hello, world\n");
+  bless \%hash => $package;
+}
+
+sub greet {
+  my ($self) = @@_;
+  print $self->{MESSAGE};
+}
+
+sub setmessage {
+  my ($self, $message) = @@_;
+  croak("missing argument to setmessage") unless defined $message;
+
+  $self->{MESSAGE} = $message;
+}
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 2
+a9 1
+  my %hash = (MESSAGE => "Hello, world\n");
+@

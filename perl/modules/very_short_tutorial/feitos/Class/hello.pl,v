@@ -1,0 +1,58 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	99.06.08.04.04.10;	author mjd;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.06.08.04.02.39;	author mjd;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Changed call to new constructor to use indirect object syntax; this
+sets up exercise 4 better.
+@
+text
+@#!/usr/bin/perl
+
+use Hello;
+
+my $greeter = new Hello;
+
+$greeter->greet;		# Prints `Hello, World'
+
+$greeter->setmessage("I love you\n");
+$greeter->greet;		# Prints `I love you'
+
+
+$greeter->setmessage();         # This is an error
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 1
+a5 1
+my $greeter = Hello->new;
+d7 1
+a7 1
+$greeter->greet;		# Prints `hello, world'
+@

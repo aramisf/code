@@ -1,0 +1,53 @@
+
+Exercises:  Do these in order.  Do all of them.  I promise not to
+	    waste your time.
+
+1. Read the code in both files, Hello.pm and hello.pl.  Run hello.pl
+   and see what it does.
+
+2. Comment out the @EXPORT line in Hello.pm and see what happens when
+   you run hello.pl.
+
+3. In Hello.pm, change
+
+	@EXPORT = ('hello');
+
+   to say
+
+	@EXPORT_OK = ('hello');
+
+   and see what happens.
+
+4. In hello.pl, change 
+
+	use Hello;
+
+   to say
+
+
+	use Hello ('hello');
+
+   and see what happens.
+
+5. Make a table that looks like this:
+
+  `hello' mentioned in:	     |  `hello' mentioned in `use' line?  |  Did it work?
+  EXPORT  EXPORT_OK  NEITHER |  **yes**         **no**            |
+  ---------------------------+------------------------------------+--------------
+
+
+  Do more experiements and fill out the chart.  The chart should have
+  at least six entries.
+   
+6. Change the name of the `hello' function to be `greet'.  You will
+   need to modify both files.  Take note of all the things you need to
+   change.
+
+7. Now you know how to write a module that will export functions into
+   your program.  Send me some feedback.
+
+	mjd-perl-modtut@plover.com
+
+8. If you want to write modules that implement object-oriented
+   classes, go to the `Class' directory that is a sibling to this one.
+
