@@ -1,0 +1,56 @@
+
+Exercises:  Do these in order.  Do all of them.  I promise not to
+	    waste your time.
+
+0. There should be a directory named `Module' next to this one.
+   Do all the exercises there first.  Then come back here.
+
+1. Read the code in hello.pl and Hello.pm and try it out.  Run
+   hello.pl and see what happens.
+
+2. Look at the error message that the sample program produces.
+   Change the `croak' to `die' in `Hello.pm' and see how the error
+   message changes.  What is the difference?  When might you prefer
+   `croak' to `die'?
+
+3. What are the arguments to the `new' function?  Put a line into
+   `new' that prints out the argument list, and rerun the test program.
+
+   In `hello.pl', change the call to `new' to say
+
+	new Hello ("Buenos Dias");
+
+   What are the arguments now?
+
+   Now change the call to say
+
+	Hello->new("Guten Tag");
+
+   What are the arguments now?
+
+4. Change `new' to accept an optional argument which is used as an
+   initial message for the greeting object.  If the optional argument
+   is missing, the function should use "Hello, world" as it does at
+   present.  Write a test program for this new feature.
+
+5. What are the arguments to the `setmessage' function?  Put a line
+   into `setmessage' that prints out the argument list.  Notice
+   especially what `$self' looks like when you print it out.
+
+6. Change `new' to set up a DEFAULT field instead of a MESSAGE field
+   in the new object, and then fix `greet' to use the MESSAGE field if
+   there is one, and the DEFAULT field otherwise.
+
+   Then modify `setmessage' to make the argument optional.  If the
+   argument is omitted, then instead of croaking, it should reset the
+   message to the default.  Write a test program for this new feature.
+
+7. Change the name of the module from `Hello' to `Greeting'.  Change
+   the test program to use the new module.
+
+8. Write to me with a suggestion about how the notes or exercises could be
+   improved.  
+
+	mjd-perl-modtut@plover.com
+
+

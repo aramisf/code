@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+
+use Hello;
+
+hello();
+
