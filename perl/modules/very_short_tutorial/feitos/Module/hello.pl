@@ -1,9 +1,11 @@
 #!/usr/bin/perl
 
 #use Hello('hello');
-#use Hello;
-require Hello;
+use Hello;
+#require Hello;
 
-Hello::hello();
-Hello::greet();
+#Hello::hello();
+#Hello::greet();
 
+hello();
+greet();

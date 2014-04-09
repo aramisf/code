@@ -2,7 +2,8 @@
 
 use Hello;
 
-my $greeter = new Hello;
+#my $greeter = new Hello ("Buenos dias");
+my $greeter = Hello->new("Buenos dias");
 
 $greeter->greet;		# Prints `Hello, World'
 

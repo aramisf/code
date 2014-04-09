@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 
 package Hello;
-#use Exporter;
-#@ISA = ('Exporter');
-#@EXPORT = ('greet', 'hello');
+use Exporter;
+@ISA = ('Exporter');
+@EXPORT = ('greet', 'hello');
 #@EXPORT_OK = ('greet');
 #@EXPORT = ('hello');
 #@EXPORT_OK = ('hello');
