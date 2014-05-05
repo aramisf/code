@@ -5,7 +5,8 @@ use warnings;
 
 use Test::More;
 
-use_ok("Hello");
+#use_ok("Hello");
+use_ok("Greeting");
 
 my $obj = new Hello;
 is $obj->greet, "Hello, world", "Default greet";
