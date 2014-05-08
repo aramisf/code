@@ -36,7 +36,8 @@ elsif ($dias == 0) {
     $msg = "O solsticio de verao eh hj!";
 }
 else {
-    $msg = "Jah se passou(aram) ".abs($dias)." dia(s) desde o solsticio de verao";
+    $msg = "Jah se passaram ".abs($dias)." dia(s) desde o solsticio de verao,
+alguma coisa mudou na sua vida?";
 }
 print "$msg\n";
 exec ("purple-remote setstatus?message=\"$msg - via perl script at http://0.mk/8c08d\"");
