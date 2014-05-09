@@ -66,14 +66,14 @@ sub lister {
 
         if (-d "$dir/$substr$ext") {
 
-          print "Diretorio: $dir/$substr$ext\n";
+          #print "Diretorio: $dir/$substr$ext\n";
           $dirs{"$substr$ext"} = [] if not defined $dirs{$dir};
           push @{$dirs{"$substr$ext"}}, "$dir/$substr$ext";
         }
 
         elsif (-e "$dir/$substr$ext") {
 
-          print "Arquivo: $dir/$substr$ext\n";
+          #print "Arquivo: $dir/$substr$ext\n";
           $arqs{"$dir/$substr$ext"}++;
         }
       }
