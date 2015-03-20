@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="shortcut icon" href="http://qntm.org/page/favicon.ico">
+		<title>Perl</title>
+
+		<style type="text/css">
+			@font-face {
+				font-family: 'Ubuntu Mono';
+				font-style: normal;
+				font-weight: 700;
+				src: local('Ubuntu Mono Bold'), local('UbuntuMono-Bold'), url('http://themes.googleusercontent.com/static/fonts/ubuntumono/v3/ceqTZGKHipo8pJj4molytjqR_3kx9_hJXbbyU8S6IN0.woff') format('woff');
+			}
+			body {
+				padding: 2em;
+				font-family: Tahoma;
+			}
+			pre {
+				margin-left: 2em;
+			}
+			pre, code {
+				color: #348275;
+				font-family: "Ubuntu Mono", monospace;
+			}
+		</style>
+	</head>
+
+	<!-- http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Roboto+Slab:400,700 -->
+	<body>
+<h1>Aprenda Perl em mais ou menos 2 horas 30 minutos</h1>
+<h2>Escrito por <a href="http://qntm.org/perl">Sam Hughes</a>, traduzido por
+  <a href="https://plus.google.com/111823334458712205300">Aramis
+Fernandes</a></h2>
+
+<p>Perl é uma linguagem dinâmica, tipada dinamicamente, de alto-nível, e
+interpretada, bastante comparável com PHP e Python. Sua sintaxe deve muito à
+antigas ferramentas de script do shell, e é famosa pelo uso exacerbado de
+símbolos confusos, cuja maioria não pode ser buscada no Google. Esta herança
+do shell faz do Perl uma linguagem muito boa para escrever códigos de
+interface: scripts que unem outros scripts e programas. Perl é idealmente
+projetado para processamento de dados de texto, produzindo mais dados de
+texto. Perl é bem distribuído, popular, altamente portável e bem suportado.  O
+Perl foi projetado com a filosofia "Há mais de uma forma de fazer isso" (do
+inglês, TIMTOWTDI - "There is more than one way to do it.") (em contraste com
+o Python, onde "deve haver uma - e preferencialmente uma - forma óbvia de
+fazer isso").</p>
+
+<p>Perl tem seus horrores, mas também possui grandes características
+redentoras. Com respeito a isso é como qualquer outra linguagem de programação
+já criada.</p>
+
+<p>Este documento tem a intenção de ser informativo, e não evangelizador. É
+dirigido a pessoas que, como eu:</p>
+<ul>
+  <li>não curte a documentação oficial do Perl em <a
+    href="http://perl.org/">http://perl.org/</a> por ser intensivamente
+  técnica e dar demasiado espaço para casos de uso bastante incomuns</li>
+  <li>aprendem novas linguagens de programação mais rápido através do modelo
+  "axioma e exemplo"</li>
+  <li>gostariam que o Larry fosse mais direto ao ponto</li>
+  <li>já sabem programar em termos gerais</li>
+  <li>não se importam com o Perl além do necessário para ter o trabalho
+  feito.</li>
+</ul>
+<p>Este documento é feito para ser tão curto quanto possível, mas não mais
+curto que isso.</p>
+
+<h2>Notas Preliminares</h2>
+<ul>
+  <li><p>Pode-se afirmar o seguinte para quase todo comando declarativa neste
+  documento: "Isto não é, estritamente, verdade; a situação é na realidade bem
+  mais complicada". Se você ver uma mentira grave, aponte, mas me reservo o
+  direito de preservar certas mentiras 'perigosas para as crianças'</p></li>
+
+  <li><p>Ao longo deste documento, estou usando exemplos com
+  <code>print</code> para produzir dados mas não estou explicitamente usando
+  quebras de linha. Isso é feito para evitar que eu enlouqueça e para dar
+  maior atenção à string sendo impressa em cada caso, o que é invariavelmente
+  mais importante. Em muitos exemplos isso resulta em
+  muitaspalavrasexpremidasparaficartudoemumalinha se o código for executado de
+  verdade.  Tente ignorar isso.</p></li>
+</ul>
+
+<h2>Hello world</h2>
+<p>Um <i>script</i> Perl é um arquivo text com a extensão <code>.pl</code>.</p>
+<p>Aqui está o texto completo de <code>helloworld.pl</code>:</p>
+<pre class="perl">use strict;
+use warnings;
+
+<a href="http://perldoc.perl.org/functions/print.html">print</a> "Hello world";
+</pre>
+<p>Scripts Perl são interpretados pelo interpretador Perl, <code>perl</code>
+ou <code>perl.exe</code>:</p>
+<pre class="bash">perl helloworld.pl [arg0 [arg1 [arg2 ...]]]
+</pre>
+
+<p>Algumas notas rápidas. A sintaxe do Perl é altamente permissiva e vai
+deixar que você faça coisas que resultam em afirmações aparentemente ambíguas
+com comportamento imprevisível. Não há razão para eu explicar o que são tais
+comportamentos, porque você quer evita-los. A maneira de evita-los é colocar
+um <code>use strict; use warnings;</code> nas primeiras linhas de todo script
+Perl ou módulo que você crie. Afirmações da forma <code>use foo;</code> são
+<i>pragmas</i>. Uma pragma é um sinal para <code>perl.exe</code>, que tem
+efeito quando a validação sintática inicial é feita, antes do program iniciar
+sua execução. Essas linhas não possuem efeito algum quando o interpretador as
+encontra em tempo de execução</p>
+<p>O ponto-e-vírgula, <code>;</code> indica o final de uma linha. O símbolo
+<code>#</code> inicia um comentário. Um comentário vai até o final da linha.
+Não há sintaxe para blocos de comentário em Perl.
+
+<h2>Variáveis</h2>
+<p>As variáveis do Perl vem em 3 tipos: <i>escalares</i>, <i>arrays</i> e
+<i>hashes</i>. Cada tipo tem seu próprio <i>símbolo</i>: <code>$</code>,
+<code>@</code> e <code>%</code> respectivamente. Variáveis são declaradas
+usando <code>my</code>, e permanecem no escopo até o final do bloco ou do
+arquivo.</p>
+<h3>Variáveis escalares</h3>
+<p>Uma variável escalar pode conter:</p>
+<ul>
+  <li><code>undef</code> (corresponde ao <code>None</code> do Python,
+  <code>null</code> do PHP)</li>
+	<li>um número (Perl não distingue entre inteiro e float)</li>
+	<li>uma string</li>
+	<li>uma referência para qualquer outra variável.</li>
+</ul>
+
+<pre class="perl">my $undef = undef;
+print $undef; # imprime a string vazia "" e produz um alerta
+
+# undef implicito:
+my $undef2;
+print $undef2; # imprime "" e produz exatamente o mesmo alerta
+</pre>
+
+<pre class="perl">my $num = 4040.5;
+print $num; # "4040.5"
+</pre>
+
+<pre class="perl">my $string = "world";
+print $string; # "world"
+</pre>
+
+<p>(Referências virão em breve.)</p>
+<p>Concatenação de strings usando o operador <code>.</code> (o mesmo do PHP):</p>
+<pre class="perl">print "Hello ".$string; # "Hello world"
+</pre>
+
+<h3>"Booleanos"</h3>
+<p><strong>Perl não possui o tipo booleano.</strong> Um escalar dentro de uma
+condicional <code>if</code> é avaliado como o booleano "falso" se e somente se
+é um dentre:</p>
+<ul>
+	<li><code>undef</code></li>
+	<li>número <code>0</code></li>
+	<li>string <code>""</code></li>
+	<li>string <code>"0"</code>.</li>
+</ul>
+
+<p>A documentação do Perl <em>repetidamente</em> reforça que funções retornam
+retornam valores "verdadeiro" ou "falso" em certas situações. Na prática
+quando uma função é chamada para retornar "verdadeiro" ou "falso" ela
+geralmente retorna <code>1</code>, e quando é chamada para retornar "falso"
+ela geralmente retorna a string vazia, <code>""</code>.</p>
+
+<h3>Tipagem fraca</h3>
+<p><strong>É impossível determinar quando um escalar contém um "número" ou uma
+  "string".</strong>
+Mais precisamente, não deveria ser necessário fazer isso. Onde um escalar se
+comporta como um número ou uma string depende do operador sendo usado. Quando
+usado como uma string, um escalar se comportará como uma string. Quando usado
+como um número, um escalar se comportará como um número (alertando quando isso
+não for possível):</p>
+
+<pre class="perl">my $str1 = "4G";
+my $str2 = "4H";
+
+print $str1 .  $str2; # "4G4H"
+print $str1 +  $str2; # "8" com dois alertas
+print $str1 eq $str2; # "" (string vazia, i.e. falso)
+print $str1 == $str2; # "1" com dois alertas
+
+# O erro clássico
+print "sim" == "não"; # "1" com dois alertas; ambos valores são avaliados como sendo 0 quando usados como números
+</pre>
+
+<p>A lição é sempre usar o operador correto na situação correta. Existem
+operadores distintos para comparar escalares enquanto números e comparar
+escalares enquanto strings:</p>
+
+<pre class="perl"># Operadores numéricos:  &lt;,  &gt;, &lt;=, &gt;=, ==, !=, &lt;=&gt;, +, *
+# Operadores de strings: <a href="http://perldoc.perl.org/perlop.html#Equality-Operators">lt, gt, le, ge, eq, ne, cmp</a>, <a href="http://perldoc.perl.org/perlop.html#Additive-Operators">.</a>, <a href="http://perldoc.perl.org/perlop.html#Multiplicative-Operators">x</a>
+</pre>
+
+<h3>Variáveis do tipo Array</h3>
+
+<p>Uma variável do tipo array é uma lista de escalares indexados por inteiros,
+iniciada por 0. Em Python é conhecida como <i>lista</i>, e em PHP é conhecida
+como <i>array</i>. Um array é declarado usando uma lista de escalares entre
+parêntesis:</p>
+
+<pre class="perl">my @array = (
+	"imprima",
+	"estas",
+	"strings",
+	"para ",
+	"mim", # não há problema em ter uma vírgula aqui no final
+);
+</pre>
+
+<p>Você deve usar um cifrão para acessar um valor de um array, pois o valor
+que está sendo <em>buscado</em> não é um array, e sim um escalar:</p>
+
+<pre class="perl">print $array[0]; # "imprima"
+print $array[1]; # "estas"
+print $array[2]; # "strings"
+print $array[3]; # "para"
+print $array[4]; # "mim"
+print $array[5]; # retorna undef, imprime "" e gera um alerta
+</pre>
+
+<p>Você pode usar índices negativos para acessar entradas a partir do final do
+array e trabalhar de forma invertida:</p>
+
+<pre class="perl">print $array[-1]; # "mim"
+print $array[-2]; # "para"
+print $array[-3]; # "strings"
+print $array[-4]; # "estas"
+print $array[-5]; # "imprima"
+print $array[-6]; # retorna undef, imprime "" e gera um alerta
+</pre>
+
+<p>Não ocorre colisão entre um escalar <code>$var</code> e um array
+<code>@var</code> contendo uma entrada escalar <code>$var[0]</code>. Mas pode
+ocorrer, contudo, confusão por parte do leitor, então evite isso.</p>
+
+<p>Para pegar o tamanho de um array:</p>
+<pre class="perl">print "Este array tem ".(scalar @array)."elementos"; # "Este array tem 6 elementos"
+print "O último indice ocupado é ".$#array;       # "O último índice ocupado é 5"
+</pre>
+
+<p>Os argumentos com os quais o script Perl original foi invocado ficam
+armazenados na <a href="http://perldoc.perl.org/perlvar.html">variável
+padrão</a> <code>@ARGV</code>.</p>
+
+<p>Variáveis podem ser interpoladas em strings:</p>
+<pre class="perl">print "Hello $string"; # "Hello world"
+print "@array";        # "imprima estas strings para mim"
+</pre>
+
+<p><strong>Cuidado.</strong> Um dia você vai colocar o email de alguém dentro
+de uma string, <code>"jeff@gmail.com"</code>. Isso fará o Perl buscar um array
+chamado <code>@gmail</code> para interpolar dentro da string, e se ele não
+encontrar, um erro em tempo de execução será disparado. A interpolação pode
+ser prevenida de duas maneiras: escapando o símbolo, ou usando aspas simples
+ao invés de aspas duplas.>/p>
+
+<pre class="perl">print "Hello \$string"; # "Hello $string"
+print 'Hello $string';  # "Hello $string"
+print "\@array";        # "@array"
+print '@array';         # "@array"
+</pre>
+
