@@ -103,8 +103,8 @@ Perl ou módulo que você crie. Afirmações da forma <code>use foo;</code> são
 <i>pragmas</i>. Uma pragma é um sinal para <code>perl.exe</code>, que tem
 efeito quando a validação sintática inicial é feita, antes do program iniciar
 sua execução. Essas linhas não possuem efeito algum quando o interpretador as
-encontra em tempo de execução</p>
-<p>O ponto-e-vírgula, <code>;</code> indica o final de uma linha. O símbolo
+encontra em tempo de execução.</p>
+<p>O ponto-e-vírgula, <code>;</code>, indica o final de uma linha. O símbolo
 <code>#</code> inicia um comentário. Um comentário vai até o final da linha.
 Não há sintaxe para blocos de comentário em Perl.
 
@@ -215,7 +215,7 @@ print $array[1]; # "estas"
 print $array[2]; # "strings"
 print $array[3]; # "para"
 print $array[4]; # "mim"
-print $array[5]; # retorna undef, imprime "" e gera um alerta
+print $array[5]; # retorna undef, imprime "" e dispara um alerta
 </pre>
 
 <p>Você pode usar índices negativos para acessar entradas a partir do final do
@@ -226,7 +226,7 @@ print $array[-2]; # "para"
 print $array[-3]; # "strings"
 print $array[-4]; # "estas"
 print $array[-5]; # "imprima"
-print $array[-6]; # retorna undef, imprime "" e gera um alerta
+print $array[-6]; # retorna undef, imprime "" e dispara um alerta
 </pre>
 
 <p>Não ocorre colisão entre um escalar <code>$var</code> e um array
@@ -258,5 +258,69 @@ ao invés de aspas duplas.>/p>
 print 'Hello $string';  # "Hello $string"
 print "\@array";        # "@array"
 print '@array';         # "@array"
+</pre>
+
+<h3>Variáveis do tipo Hash</h3>
+
+<p>Uma variável do tipo hash é uma lista de escalares indexadas por strings.
+Em Python elas são conhecidas como <i>dicionários</i>, e em PHP são conhecidas
+como <i>array</i>.</p>
+
+<pre class="perl">my %cientistas = (
+	"Newton"   =&gt; "Isaac",
+	"Einstein" =&gt; "Albert",
+	"Darwin"   =&gt; "Charles",
+);
+</pre>
+
+<p>Note o quanto esta declaração é parecida com a declaração de um array. De
+fato, a flecha dupla <code>=&gt;</code> é chamada "vírgula gorda", por ser
+apenas um sinônimo para o separador vírgula. Uma has é declarada usando uma
+lista com um número par de elementos, onde os elementos pares (0,2, ...) são
+utilizados como as strings.</p>
+
+<p>De novo, você deve usar um cifrão para acessar um valor de uma hash, pois o
+valor sendo <em>acessado</em> não é uma hash, mas um escalar:</p>
+
+<pre class="perl">print $cientistas{"Newton"};   # "Isaac"
+print $cientistas{"Einstein"}; # "Albert"
+print $cientistas{"Darwin"};   # "Charles"
+print $cientistas{"Dyson"};    # retorna undef, imprime "" e dispara um alerta
+</pre>
+
+<p>Note as chaves usadas aqui. Novamente, não há colisão entre um escalar
+<code>$var</code> e uma hash <code>%var</code> contendo uma entrada escalar
+<code>$var{"foo"}</code>.</p>
+
+<p>Você pode converter uma hash diretamente em um array com o dobro de
+entradas, alternando entre chaves e valores (e o inverso é igualmente
+fácil):</p>
+<pre class="perl">my @cientistas = %cientistas;
+</pre>
+
+<p>Contudo, diferente de um array, as chaves de uma hash <em>não possuem uma
+ordem subjacente<em>. Elas serão retornadas em uma ordem qualquer que seja
+mais eficiente. Então, perceba que a <em>ordem</em> foi rearranjada mas os
+<em>pares</em> foram mantidos, resultando no seguinte array:</p>
+
+<pre class="perl">print "@cientistas"; # algo como "Einstein Albert Darwin Charles Newton Isaac"
+</pre>
+
+<p>Recaptulando, você deve usar <strong>colchetes</strong> para acessar um
+valor de um array, mas você deve usar <strong>chaves</strong> para acessar um
+valor de uma hash. Os colchetes são efetivamente operadores numéricos e as
+chaves são efetivamente operadores de string. O fato de um <em>índice</em>
+provido ser um número ou uma string não tem absolutamente nenhuma
+significância:</p>
+
+<pre class="perl">my $data = "laranja";
+my @data = ("violeta");
+my %data = ( "0" =&gt; "azul");
+
+print $data;      # "laranja"
+print $data[0];   # "violeta"
+print $data["0"]; # "violeta"
+print $data{0};   # "azul"
+print $data{"0"}; # "azul"
 </pre>
 
