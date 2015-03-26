@@ -324,3 +324,105 @@ print $data{0};   # "azul"
 print $data{"0"}; # "azul"
 </pre>
 
+<h3>Listas</h3>
+
+<p>Uma <i>lista</i> em Perl é algo diferente de um array ou uma hash. Você acabou de ver uma série de listas:</p>
+
+<pre class="perl">(
+	"imprima",
+	"estas",
+	"strings",
+	"para",
+	"mim",
+)
+
+(
+	"Newton"   =&gt; "Isaac",
+	"Einstein" =&gt; "Albert",
+	"Darwin"   =&gt; "Charles",
+)
+</pre>
+
+<p><strong>Uma lista não é uma variável.</strong> Uma lista é um
+<em>valor</em> efêmero que pode ser <em>atribuído</em> a um array ou uma hash.
+É por isso que a sintaxe para declarar variáveis do tipo array e hash é a
+mesma. Existem diversas situações onde os termos "lista" e "array" podem ser
+usados intercambiavelmente, mas existem igualmente muitas situações onde eles
+podem exibir comportamentos sutilmente diferentes e extremamente confusos.</p>
+
+<p>Ok. Lembre-se que <code>=&gt;</code> é somente uma <code>,</code> disfarçada e então olhe para este exemplo:</p>
+
+<pre class="perl">("one", 1, "three", 3, "five", 5)
+("one" =&gt; 1, "three" =&gt; 3, "five" =&gt; 5)
+</pre>
+
+<p>O uso de <code>=&gt;</code> sugere que uma destas listas é uma declaração
+de um array e a outra uma declaração de uma hash. Mas em si mesmas, nenhuma
+delas é declaração de nada em particular. São apenas listas. Listas
+<em>idênticas</em>. Da mesma forma:</p>
+
+<pre class="perl">()
+</pre>
+
+<p>Não existem nem sugestões aqui. Esta lista poderia ser usada para declarar
+um array vazio ou uma hash vazia e o interpretador <code>perl</code>
+claramente não poderia dizer outra coisa. Uma vez que você entenda este
+aspecto singular do Perl, você também vai entender porquê o seguinte fato deve
+ser verdadeiro: <strong>Não é possível encadear valores em uma lista.</strong>
+Tente:
+
+<pre class="perl">my @array = (
+	"maçãs",
+	"bananas",
+	(
+		"lista",
+		"interna",
+		"diversas",
+		"entradas",
+	),
+	"cerejas",
+);
+</pre>
+
+<p>O Perl não tem como saber quando <code>("lista", "interna", "diversas",
+"entradas")</code> deveria ser um array interno ou uma hash interna. Portanto,
+o Perl assume que não é nenhum e <strong>achata a lista toda como uma única
+lista longa</strong>:</p>
+
+<pre>print $array[0]; # "maçãs"
+print $array[1]; # "bananas"
+print $array[2]; # "lista"
+print $array[3]; # "interna"
+print $array[4]; # "diversas"
+print $array[5]; # "entradas"
+print $array[6]; # "cerejas"
+</pre>
+
+<p>O mesmo é verdade quando a flecha gorda é usada ou não:</p>
+
+<pre class="perl">my %hash = (
+	"cerveja" =&gt; "boa",
+	"bananas" =&gt; (
+		"verde"  =&gt; "aguarde",
+		"amarela" =&gt; "coma",
+	),
+);
+
+# O código acima dispara um alerta porque a hash foi declara usando uma lista
+com 7 elementos
+
+print $hash{"cerveja"}; # "boa"
+print $hash{"bananas"}; # "verde"
+print $hash{"aguarde"}; # "amarela";
+print $hash{"coma"};    # undef, imprime "" e dispara um alerta
+</pre>
+
+<p>É claro, isso facilita a concatenação de múltiplos arrays:</p>
+
+<pre class="perl">my @ossos   = ("úmero", ("mandíbula", "crânio"), "tíbia");
+my @dedos = ("polegar", "indicador", "médio", "anular", "mindinho");
+my @partes   = (@ossos, @dedos, ("pé", "dedos do pé"), "globo ocular", "articulação");
+print @partes;
+</pre>
+
+<p>Mais sobre o isso em breve.</p>
