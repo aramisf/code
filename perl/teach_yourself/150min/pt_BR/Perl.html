@@ -426,3 +426,77 @@ print @partes;
 </pre>
 
 <p>Mais sobre o isso em breve.</p>
+
+<h2>Contexto</h2>
+
+<p>A característica mais distinta do Perl é que seu código é <i>sensível a
+  contexto</i>. <strong>Toda expressão em Perl é avaliada ou num contexto
+escalar, ou num contexto de lista</strong>, conforme o que é esperado que a
+expressão produza. Sem saber o contexto onde uma expressão é avaliada, é
+impossível determinar o valor final de tal avaliação.</p>
+
+<p>Uma atribuição escalar tal como <code>my $scalar =</code> tem sua expressão
+avaliada em contexto escalar. Aqui, a expressão é <code>"Mendeleev"</code>:</p>
+<pre class="perl">my $scalar = "Mendeleev";</pre>
+
+<p>Uma atribuição de array ou hash tal como <code>my @array =</code> or <code>my
+%hash =</code> tem sua expressão avaliada em contexto de lista. Aqui, a
+expressão é <code>("Alpha", "Beta", "Gamma", "Pie")</code> (ou <code>("Alpha"
+=&gt; "Beta", "Gamma" =&gt; "Pie")</code>, ambas são equivalentes):</p>
+<pre class="perl">my @array = ("Alpha", "Beta", "Gamma", "Pie");
+my %hash = ("Alpha" =&gt; "Beta", "Gamma" =&gt; "Pie");</pre>
+
+<p>Uma expressão escalar avaliada em contexto de lista é silenciosamente
+convertida em uma lista de um único elemento:i</p>
+<pre class="perl">my @array = "Mendeleev"; # o mesmo que 'my @array = ("Mendeleev");'</pre>
+
+<p>Uma expressão de array avaliada em contexto escalar retorna o tamanho do
+array:</p>
+
+<pre class="perl">my @array = ("Alpha", "Beta", "Gamma", "Pie");
+my $scalar = @array;
+print $scalar; # "4"
+</pre>
+
+<p>Uma expressão do tipo lista (uma lista é diferente de um array, lembra?)
+avaliada em um contexto escalar não retorna o tamanho da lista, mas <em>o último
+elemento escalar da lista</em>:</p>
+<pre class="perl">my $scalar = ("Alpha", "Beta", "Gamma", "Pie");
+print $scalar; # "Pie"
+</pre>
+
+<p>A função <code><a
+href="http://perldoc.perl.org/functions/print.html">print</a></code> avalia
+todos os seus argumentos em um contexto de lista. De fato, <code>print</code>
+aceita um número ilimitado de argumentos e imprime um após o outro, o que
+significa que pode ser usado para imprimir arrays diretamente:</p>
+
+<pre class="perl">my @array = ("Alpha", "Beta", "Goo");
+my $scalar = "-X-";
+print @array;              # "AlphaBetaGoo";
+print $scalar, @array, 98; # "-X-AlphaBetaGoo98";
+</pre>
+
+<p><strong>Cuidado.</strong> Muitas expressões e <a
+href="http://perldoc.perl.org/perlfunc.html">funções</a> em Perl demonstram um
+comportamento radicalmente diferente conforme o contexto onde são avaliadas. O
+exemplo mais proeminente é a função <code><a
+href="http://perldoc.perl.org/functions/reverse.html">reverse</a></code>. Em
+contexto de lista, <code>reverse</code> trata seus argumentos como uma lista, e
+a inverte. Em contexto escalar, <code>reverse</code> concatena toda lista e
+depois reverte-a como uma única palavra.</p>
+
+<pre class="perl">print reverse "hello world"; # "hello world"
+my $string = reverse "hello world";
+print $string; # "dlrow olleh"
+</pre>
+
+<p>Você pode forçar qualquer expressão a ser avaliada em contexto escalar usando
+a função <code><a
+href="http://perldoc.perl.org/functions/scalar.html">scalar</a></code>:</p>
+
+<pre class="perl">print scalar reverse "hello world"; # "dlrow olleh"</pre>
+
+<p>Lembra-se como usamos <code>scalar</code> antes, para obter o tamanho do
+array?</p>
+
