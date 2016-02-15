@@ -22,8 +22,11 @@ usage () {
 pomodoro () {
   INTERVAL=$1
   MSG=$2
+  sleep $((INTERVAL * 60))
   zenity --info --text "$MSG"
 }
+
+[ ${#@} != 2 ] && usage
 
 while getopts "b:w:" opt; do
 
