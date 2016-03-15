@@ -500,3 +500,67 @@ href="http://perldoc.perl.org/functions/scalar.html">scalar</a></code>:</p>
 <p>Lembra-se como usamos <code>scalar</code> antes, para obter o tamanho do
 array?</p>
 
+<h2>Referências e estruturas de dados aninhadas</h2>
+
+<p>Da mesma forma que listas não podem conter listas como elementos, <strong>
+arrays e hashes não podem conter arrays e hashes como elementos.</strong>
+Eles só podem conter escalares. Veja o que acontece quando tentamos:</p>
+
+<pre class="perl">my @outer = ("Sun", "Mercury", "Venus", undef, "Mars");
+my @inner = ("Earth", "Moon");
+
+$outer[3] = @inner;
+
+print $outer[3]; # "2"
+</pre>
+
+<p><code>$outer[3]</code> é um escalar, então ele demanda um valor escalar.
+Quando você tenta atribuir a ele um valor de array como <code>@inner</code>,
+<code>@inner</code> é considerado num contexto escalar. Isso é o mesmo que
+assinalar <code>scalart @inner</code>, que é o tamanho do array <code>@inner
+</code>, que é 2.</p>
+
+<p>Contudo, uma variável escalar pode conter uma <i>referência</i> para
+qualquer variável, incluindo uma variável do tipo array ou do tipo hash.
+Assim é como estruturas de dados mais complicadas são criadas em Perl.</p>
+
+<p>Uma referência é criada usando uma contrabarra.</p>
+
+<pre class="perl">my $colour    = "Indigo";
+my $scalarRef = \$colour;
+</pre>
+
+<p>Em qualquer lugar que você normalmente usaria o nome de uma variável,
+você pode simplesmente colocar chaves no lugar, e, dentro delas, colocar uma
+<em>referência</em> para uma variável.</p>
+
+<pre class="perl">print $colour;         # "Indigo"
+print $scalarRef;      # e.g. "SCALAR(0x182c180)"
+print ${ $scalarRef }; # "Indigo"
+</pre>
+
+<p>Contanto que o resultado não seja ambíguo, você também pode omitir as
+chaves:</p>
+
+<pre class="perl">print $$scalarRef; # "Indigo"</pre>
+
+<p>Se sua referência é uma referência para uma variável do tipo array ou
+hash, você pode extrair dados dela usando chaves ou usando o operador mais
+popular, a flecha: <code>-&gt;</code>:</p>
+
+<pre class="perl">my @colours = ("Red", "Orange", "Yellow", "Green", "Blue");
+my $arrayRef = \@colours;
+
+print $colours[0];       # acesso direto ao array
+print ${ $arrayRef }[0]; # use a referência para chegar ao array
+print $arrayRef-&gt;[0];    # exatamente a mesma coisa
+
+my %atomicWeights = ("Hydrogen" =&gt; 1.008, "Helium" =&gt; 4.003, "Manganese" =&gt; 54.94);
+my $hashRef = \%atomicWeights;
+
+print $atomicWeights{"Helium"}; # acesso direto à hash
+print ${ $hashRef }{"Helium"};  # use uma referência para chegar à hash
+print $hashRef-&gt;{"Helium"};     # exatamente a mesma coisa - isso é muito comum
+</pre>
+
+<h3>Declarando uma estrutura de dados</h3>
