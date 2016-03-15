@@ -564,3 +564,176 @@ print $hashRef-&gt;{"Helium"};     # exatamente a mesma coisa - isso é muito co
 </pre>
 
 <h3>Declarando uma estrutura de dados</h3>
+
+<p>Aqui estão quatro exemplos, mas na prática o último é o mais útil.</p>
+
+<pre class="perl">my %owner1 = (
+  "name" =&gt; "Santa Claus",
+  "DOB"  =&gt; "1882-12-25",
+);
+
+my $owner1Ref = \%owner1;
+
+my %owner2 = (
+  "name" =&gt; "Mickey Mouse",
+  "DOB"  =&gt; "1928-11-18",
+);
+
+my $owner2Ref = \%owner2;
+
+my @owners = ( $owner1Ref, $owner2Ref );
+
+my $ownersRef = \@owners;
+
+my %account = (
+  "number" =&gt; "12345678",
+  "opened" =&gt; "2000-01-01",
+  "owners" =&gt; $ownersRef,
+);
+</pre>
+
+<p>Obviamente isto é desnecessariamente trabalhoso, pois você pode reduzir
+tal exemplo a:</p>
+
+<pre class="perl">my %owner1 = (
+  "name" =&gt; "Santa Claus",
+  "DOB"  =&gt; "1882-12-25",
+);
+
+my %owner2 = (
+  "name" =&gt; "Mickey Mouse",
+  "DOB"  =&gt; "1928-11-18",
+);
+
+my @owners = ( \%owner1, \%owner2 );
+
+my %account = (
+  "number" =&gt; "12345678",
+  "opened" =&gt; "2000-01-01",
+  "owners" =&gt; \@owners,
+);
+</pre>
+
+<p>Também é possível declarar arrays e hashes <i>anônimos</i> usando
+símbolos diferentes. Usamos colchetes para um array anônimo e chaves para
+uma hash anônima. O valor retornado em cada caso é uma <em>referência</em>
+para a estrutura de dados anônima em questão. Preste atenção, o exemplo a
+seguir resulta exatamente na mesma <code>%account</code> acima:</p>
+
+<pre class="perl"># Chaves definem uma hash anônima
+my $owner1Ref = {
+  "name" =&gt; "Santa Claus",
+  "DOB"  =&gt; "1882-12-25",
+};
+
+my $owner2Ref = {
+  "name" =&gt; "Mickey Mouse",
+  "DOB"  =&gt; "1928-11-18",
+};
+
+# Colchetes definem um array anônimo
+my $ownersRef = [ $owner1Ref, $owner2Ref ];
+
+my %account = (
+  "number" =&gt; "12345678",
+  "opened" =&gt; "2000-01-01",
+  "owners" =&gt; $ownersRef,
+);
+</pre>
+
+<p>Ou, em resumo (e esta é a forma que <em>realmente</em> deveria usar
+quando estiver declarando estruturas de dado complexas em uma só atribuição)
+</p>
+
+<pre class="perl">my %account = (
+  "number" =&gt; "31415926",
+  "opened" =&gt; "3000-01-01",
+  "owners" =&gt; [
+    {
+      "name" =&gt; "Philip Fry",
+      "DOB"  =&gt; "1974-08-06",
+    },
+    {
+      "name" =&gt; "Hubert Farnsworth",
+      "DOB"  =&gt; "2841-04-09",
+    },
+  ],
+);
+</pre>
+
+<h3>Obtendo informação de uma estrutura de dados</h3>
+
+<p>Agora vamos assumir que você ainda tem <code>%account</code> acessível no
+seu escopo, mas todo resto (se é que havia algo além disso) saiu do escopo.
+Você pode imprimir a informação revertendo o mesmo procedimento em cada caso.
+Novamente, aqui estão quatro exemplos, dos quais o último é o mais útil:</p>
+
+
+<pre class="perl">my $ownersRef = $account{"owners"};
+my @owners    = @{ $ownersRef };
+my $owner1Ref = $owners[0];
+my %owner1    = %{ $owner1Ref };
+my $owner2Ref = $owners[1];
+my %owner2    = %{ $owner2Ref };
+print "Conta #", $account{"number"}, "\n";
+print "Aberta em ", $account{"opened"}, "\n";
+print "Titulares:\n";
+print "\t", $owner1{"name"}, " (born ", $owner1{"DOB"}, ")\n";
+print "\t", $owner2{"name"}, " (born ", $owner2{"DOB"}, ")\n";
+</pre>
+
+<p>Ou, em suma:</p>
+
+<pre class="perl">my @owners = @{ $account{"owners"} };
+my %owner1 = %{ $owners[0] };
+my %owner2 = %{ $owners[1] };
+print "Conta #", $account{"number"}, "\n";
+print "Aberta em ", $account{"opened"}, "\n";
+print "Titulares:\n";
+print "\t", $owner1{"name"}, " (born ", $owner1{"DOB"}, ")\n";
+print "\t", $owner2{"name"}, " (born ", $owner2{"DOB"}, ")\n";
+</pre>
+
+<p>Ou usando referências e o operador <code>-&gt;</code>:
+
+<pre class="perl">my $ownersRef = $account{"owners"};
+my $owner1Ref = $ownersRef-&gt;[0];
+my $owner2Ref = $ownersRef-&gt;[1];
+print "Conta #", $account{"number"}, "\n";
+print "Aberta em ", $account{"opened"}, "\n";
+print "Titulares:\n";
+print "\t", $owner1Ref-&gt;{"name"}, " (born ", $owner1Ref-&gt;{"DOB"}, ")\n";
+print "\t", $owner2Ref-&gt;{"name"}, " (born ", $owner2Ref-&gt;{"DOB"}, ")\n";
+</pre>
+
+<p>E se deixarmos de lado os valores intermediários:</p>
+
+<pre class="perl">print "Conta #", $account{"number"}, "\n";
+print "Aberta em ", $account{"opened"}, "\n";
+print "Titulares:\n";
+print "\t", $account{"owners"}-&gt;[0]-&gt;{"name"}, " (born ", $account{"owners"}-&gt;[0]-&gt;{"DOB"}, ")\n";
+print "\t", $account{"owners"}-&gt;[1]-&gt;{"name"}, " (born ", $account{"owners"}-&gt;[1]-&gt;{"DOB"}, ")\n";
+</pre>
+
+<h3>Como atirar no próprio pé com referências para arrays</h3>
+
+<p>Este array tem cinco elementos:</p>
+<pre class="perl">my @array1 = (1, 2, 3, 4, 5);
+print @array1; # "12345"
+</pre>
+
+<p>Este array, no entanto, tem UM elemento (que no caso é uma referência
+para um array anônimo de cinco elementos):</p>
+
+<pre class="perl">my @array2 = [1, 2, 3, 4, 5];
+print @array2; # e.g. "ARRAY(0x182c180)"
+</pre>
+
+<p>Este <em>escalar</em> é uma referência para um array anônimo de cinco
+elementos:</p>
+
+<pre class="perl">my $array3Ref = [1, 2, 3, 4, 5];
+print $array3Ref;      # e.g. "ARRAY(0x22710c0)"
+print @{ $array3Ref }; # "12345"
+print @$array3Ref;     # "12345"
+</pre>
