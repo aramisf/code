@@ -1,9 +1,0 @@
- `hello' mentioned in:	     |  `hello' mentioned in `use' line?  |  Did it work?
-  EXPORT                     |  **yes**->yes    **no**->yes       |   yes 2x
-  EXPORT_OK                  |  **yes**->yes    **no**->no        |
-  NEITHER                    |  **yes**->no     **no**->no        |
-  ---------------------------+------------------------------------+--------------
-
-s/hello/greet/g:
-
-
