@@ -1,2 +1,5 @@
 <h2>Id do pad: <%= @id %></h2>
 <textarea id="pad"></textarea>
+<script>
+  window.padId = "<%= @id %>";
+</script>

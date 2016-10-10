@@ -3,6 +3,7 @@ defmodule Typepad.UserSocket do
 
   ## Channels
   # channel "room:*", Typepad.RoomChannel
+  channel "pad:*", Typepad.PadChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
