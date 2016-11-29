@@ -1,0 +1,2 @@
+defmodule Codewars do
+end
