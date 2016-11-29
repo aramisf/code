@@ -39,7 +39,11 @@ defmodule Pilecubes do
   Core function to this module, it tries to find an N that amounts to the total
   volume given as parameter
   """
+  def find_nb(nil), do: -1
+
   def find_nb(m) do
+    # max = div(round(:math.sqrt(m)), 1000)
+    # {i, n} = 1..max
     {i, n} = Stream.iterate(0, &(&1+1))
     |> Stream.map(fn(i) ->
       {i, calculate_volume_at_level(i)}
