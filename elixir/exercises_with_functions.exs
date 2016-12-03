@@ -31,3 +31,21 @@ first = fn first_string -> fn second_string -> "#{first_string} #{second_string}
 # – Enum.each [1,2,3,4], fn x -> IO.inspect x end
 enum = Enum.map [1,2,3,4], &(&1+2)
 each = Enum.each [1,2,3,4], $(IO.inspect(&1))
+
+# Exercise: ModulesAndFunctions-1 Extend the Times module with a triple function
+# that multiplies its parameter by three.  ➤ Exercise: ModulesAndFunctions-2 Run
+# the result in iex. Use both techniques to compile the file.  ➤ Exercise:
+# ModulesAndFunctions-3 Add a quadruple function. (Maybe it could call the double
+#                                                  function....)
+defmodule Times do
+  def double(n) do
+    n*2
+  end
+
+  def triple(n) do
+    n*3
+  end
+
+  def quadruple(n), do: double(n) * 2
+  def quadruple2(n), do: double(n) + double(n)
+end
