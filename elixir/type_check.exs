@@ -1,0 +1,17 @@
+defmodule TypeCheck do
+  def of(v) when is_atom(v), do: IO.puts "#{inspect(v)} is an atom"
+  def of(v) when is_binary(v), do: IO.puts "#{inspect(v)} is binary"
+  def of(v) when is_bitstring(v), do: IO.puts "#{inspect(v)} is bitstring"
+  def of(v) when is_boolean(v), do: IO.puts "#{v} is a boolean"
+  #def of(v) when is_exception(v), do: IO.puts "#{v} is an exception"
+  def of(v) when is_float(v), do: IO.puts "#{v} is a float"
+  def of(v) when is_function(v), do: IO.puts "#{v} is a function"
+  def of(v) when is_integer(v), do: IO.puts "#{v} is an integer"
+  def of(v) when is_list(v), do: IO.puts "#{inspect(v)} is a list"
+  def of(v) when is_map(v), do: IO.puts "#{inspect(v)} is a map"
+  def of(v) when is_number(v), do: IO.puts "#{v} is a number"
+  def of(v) when is_pid(v), do: IO.puts "#{v} is a pid"
+  def of(v) when is_port(v), do: IO.puts "#{v} is a port"
+  #def of(v) when is_record(v), do: IO.puts "#{v} is a record"
+  def of(v) when is_tuple(v), do: IO.puts "#{inspect(v)} is an tuple"
+end
