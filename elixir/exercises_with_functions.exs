@@ -35,8 +35,8 @@ each = Enum.each [1,2,3,4], $(IO.inspect(&1))
 # Exercise: ModulesAndFunctions-1 Extend the Times module with a triple function
 # that multiplies its parameter by three.  ➤ Exercise: ModulesAndFunctions-2 Run
 # the result in iex. Use both techniques to compile the file.  ➤ Exercise:
-# ModulesAndFunctions-3 Add a quadruple function. (Maybe it could call the double
-#                                                  function....)
+# ModulesAndFunctions-3 Add a quadruple function. (Maybe it could call the
+# double function....)
 defmodule Times do
   def double(n) do
     n*2
@@ -48,4 +48,21 @@ defmodule Times do
 
   def quadruple(n), do: double(n) * 2
   def quadruple2(n), do: double(n) + double(n)
+end
+
+# Implement and run a function sum(n) that uses recursion to calculate the sum
+# of the integers from 1 to n. You’ll need to write this function inside a
+# module in a separate file. Then load up iex, compile that file, and try your
+# function.
+defmodule Sum do
+  def sum(0), do: 0
+  def sum(n), do: n + sum(n-1)
+end
+
+# Write a function gcd(x,y) that finds the greatest common divisor between two
+# nonnegative integers. Algebraically, gcd(x,y) is x if y is zero; it’s gcd(y,
+# rem(x,y)) otherwise.
+defmodule Mdc do
+  def of(x,0), do: x
+  def of(x,y), do: of(y,rem(x,y))
 end
