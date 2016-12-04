@@ -66,3 +66,24 @@ defmodule Mdc do
   def of(x,0), do: x
   def of(x,y), do: of(y,rem(x,y))
 end
+
+# - Convert a float to a string with two decimal digits. (Erlang)
+:io.format("The number is ~4.2f~n",[4.56789])
+
+# – Get the value of an operating-system environment variable. (Elixir)
+Elixir.System.get_env("HOME")
+
+# – Return the extension component of a file name (so return .exs if given
+# "dave/test.exs"). (Elixir)
+Elixir.Path.extname("asdf.html")
+
+# – Return the process’s current working directory. (Elixir)
+Elixir.System.cwd
+
+# – Convert a string containing JSON into Elixir data structures. (Just find;
+# don’t install.)
+https://github.com/cblage/elixir-json
+
+# – Execute a command in your operating system’s shell.
+System.cmd "ls", []
+
