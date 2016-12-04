@@ -52,5 +52,12 @@ defmodule MyList do
   defp charcode(c) when c >= 123, do: rem(c,123) + 97
   def caesar([],_), do: ''
   def caesar([h|t],n), do: [charcode(h+n)|caesar(t,n)]
+
+  # Write a function MyList.span(from, to) that returns a list of the numbers
+  # from from up to to.
+  def span(to,to), do: [to]
+  def span(greater,minor) when greater > minor, do: [inspect greater]
+  def span(from,to), do: [from | span(from+1, to)]
+
 end
 
