@@ -68,10 +68,8 @@ defmodule MyEnum do
   end
 
   def reverse(list, reversed \\ [])
-  def reverse([], _), do: []
-  def reverse([h1 | []], _), do: [h1]
-  def reverse([h1 | [h2 | [] ] ], rev), do: [h2 | [ h1 | rev]]
-  def reverse([h1 | [h2 | t] ], rev) do
-    reverse([h2|t], [h1 | rev])
+  def reverse([], l), do: l
+  def reverse([h1 | t], rev) do
+    reverse(t, [h1 | rev])
   end
 end
