@@ -48,15 +48,9 @@ defmodule MyEnum do
   defp _split([],n,c,_) when c >= 0, do: {reverse(n),[]}
   defp _split([],n,c,_) when c < 0, do: {[],n}
 
-  # TODO
-  defp _split(_,_,count,_) when count < 0 do
-  #defp _split([h|t], new_list, count, index) when count < 0 do
-    nil
-    #if index > count do
-    #  _split(t, [h|new_list], count, index-1)
-    #else
-    #  {reverse(new_list), [h|t]}
-    #end
+  defp _split(list, new_list, count, index) when count < 0 do
+    {a, b} = _split(reverse(list), new_list, (count* -1), index)
+    {reverse(b), reverse(a)}
   end
 
   defp _split([h|t], new_list, count, index) when count >= 0 do
