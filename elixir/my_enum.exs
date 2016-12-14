@@ -66,4 +66,23 @@ defmodule MyEnum do
   def reverse([h1 | t], rev) do
     reverse(t, [h1 | rev])
   end
+
+  def take(_, 0), do: []
+  def take(list, amount) when amount > 0 do
+    _take(list, amount, [], 0)
+  end
+
+  def take(list, amount) when amount < 0 do
+    _take(reverse(list), amount*-1, [], 0)
+  end
+
+  defp _take([], _, [], _), do: []
+  defp _take([], m, l, n) when m >= n, do: reverse(l)
+  defp _take([h|t], amount, result, start) do
+    if start < amount do
+      _take(t, amount, [h|result], start+1)
+    else
+      reverse(result)
+    end
+  end
 end
