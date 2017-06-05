@@ -35,3 +35,12 @@ time = Benchmark.realtime do
 end
 
 puts "P calcular (laza | rento) - (laza & rento) demorou: #{time.round(3)}\n"
+diff = nil
+puts
+
+time = Benchmark.realtime do
+  diff = (laza - rento).empty? && (rento - laza).empty?
+end
+
+puts "P calcular (laza - rento).empty? && (rento - laza).empty? demorou: #{time.round(3)}\n"
+puts
