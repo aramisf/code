@@ -1,0 +1,20 @@
+# Basic `Hello World` framework / library
+
+## System Requirements:
+
+- When given first name, last name and optional language, it generates formal
+  and informal greetings;
+
+- Support Portuguese, English, German and Spanish languages;
+
+- Reusable by other programs;
+
+- Easy to type (like `G$()` )
+
+- Support jQuery:
+  - given a jQuery object, like a HTML element, enable the ability to fill that
+    element with the greeting.
+
+
+
+
