@@ -1,2 +1,5 @@
-let g = G$('Fulano', 'Sobrenome', 'de');
-console.log(g);
+
+$('#login').on('click', function() {
+  const lang = $('#lang').val()
+  G$('Fulano', 'Sobrenome', lang).translate('#greeting');
+})
